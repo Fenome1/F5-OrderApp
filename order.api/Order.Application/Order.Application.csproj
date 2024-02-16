@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Autofac" Version="8.0.0"/>
+        <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="9.0.0"/>
+        <PackageReference Include="AutoMapper" Version="13.0.1"/>
+        <PackageReference Include="AutoMapper.Contrib.Autofac.DependencyInjection" Version="7.2.0"/>
+        <PackageReference Include="BCrypt.Net-Next" Version="4.0.3"/>
+        <PackageReference Include="MediatR" Version="12.2.0"/>
+        <PackageReference Include="MediatR.Extensions.Autofac.DependencyInjection" Version="12.0.0"/>
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.1"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Features\Users\Commands\Delete\"/>
+        <Folder Include="Features\Users\Commands\Update\"/>
+        <Folder Include="Features\Users\Queries\"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Order.Core\Order.Core.csproj"/>
+        <ProjectReference Include="..\Order.Persistence\Order.Persistence.csproj"/>
+    </ItemGroup>
+
+</Project>
