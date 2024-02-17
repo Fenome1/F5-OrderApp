@@ -1,7 +1,7 @@
 import {IRole} from "./IRole.ts";
 
 export interface IUser {
-    id: number
+    UserId: number
     login: string
     password: string
     firstName: string

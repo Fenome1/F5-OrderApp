@@ -57,7 +57,7 @@ public class RefreshCommandHandler : IRequestHandler<RefreshCommand, AuthResultV
             {
                 AccessToken = newAccessToken,
                 RefreshToken = newRefreshToken.Token,
-                UserViewModel = userViewModel
+                User = userViewModel
             };
         }
 
@@ -65,7 +65,7 @@ public class RefreshCommandHandler : IRequestHandler<RefreshCommand, AuthResultV
         {
             AccessToken = _tokenService.GenerateAccessToken(user),
             RefreshToken = user.RefreshToken.Token,
-            UserViewModel = userViewModel
+            User = userViewModel
         };
     }
 }

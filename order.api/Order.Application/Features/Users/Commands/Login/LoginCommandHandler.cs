@@ -49,7 +49,7 @@ public class LoginCommandHandler : IRequestHandler<LoginCommand, AuthResultViewM
         {
             AccessToken = token,
             RefreshToken = user.RefreshToken.Token,
-            UserViewModel = userViewModel
+            User = userViewModel
         };
     }
 }

@@ -24,14 +24,14 @@
 .main-duty {
     margin-left: 20px;
     width: 100%;
-    font-size: 20pt;
+    font-size: 17pt;
     font-weight: 600;
 }
 
 .main-duty > div {
     display: flex;
     justify-content: space-between;
-    font-size: 33pt;
+    font-size: 31pt;
     font-weight: 700;
     line-height: 24px;
     align-items: center;

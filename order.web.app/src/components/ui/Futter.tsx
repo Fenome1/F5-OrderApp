@@ -1,7 +1,6 @@
 import {Box, IconButton, Typography} from "@mui/material";
 import {Colors} from "../../common/Colors.ts";
 
-
 const Futter = () => {
     return (
         <Box sx={{

@@ -1,4 +1,4 @@
-import Nav from "../../ui/Nav.tsx";
+import Nav from "../../ui/nav/Nav.tsx";
 import Futter from "../../ui/Futter.tsx";
 import {Box} from "@mui/material";
 

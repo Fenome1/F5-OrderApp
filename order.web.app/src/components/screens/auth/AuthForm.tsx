@@ -1,21 +1,27 @@
-import {useLoginMutation} from "../../../store/apis/authApi.ts";
 import {Button, Stack, TextField} from "@mui/material";
 import {IAuthCommand} from "../../../features/commands/IAuthCommand.ts";
 import {Person,} from "@mui/icons-material";
 import {Colors} from "../../../common/Colors.ts";
 import './style.css'
-import {Simulate} from "react-dom/test-utils";
+import {useLoginMutation} from "../../../store/apis/authApi.ts";
+import {useForm} from "react-hook-form";
+import {useNavigate} from "react-router-dom";
 
 const AuthForm = () => {
 
+    const {register, handleSubmit} = useForm<IAuthCommand>()
     const [login, {isLoading}] = useLoginMutation();
+    const navigate = useNavigate()
 
     const onSubmit = async (data: IAuthCommand) => {
-        await login(data);
+        const result = await login(data)
+        if ("data" in result && result.data) {
+            navigate("/duties")
+        }
     };
 
     return (
-        <form onSubmit={() => onSubmit()}>
+        <form onSubmit={handleSubmit(onSubmit)}>
             <Stack>
                 <span className='auth-label'>
                     <Person style={{marginRight: "10px", marginTop: "5px", color: Colors.Fourthly}}/>
@@ -30,6 +36,7 @@ const AuthForm = () => {
                         }
                     }}
                     required={true}
+                    {...register("login")}
                     label="Логин"
                     size={"small"}
                     style={{marginBottom: '30px'}}
@@ -52,6 +59,7 @@ const AuthForm = () => {
                             }
                         }
                     }}
+                    {...register("password")}
                     required={true}
                     label="Пароль"
                     type="password"

@@ -1,6 +1,6 @@
 import {FC} from 'react';
 import {Box, Button, Grid, Stack,} from '@mui/material';
-import Nav from "../../ui/Nav.tsx";
+import Nav from "../../ui/nav/Nav.tsx";
 import Futter from "../../ui/Futter.tsx";
 import {Colors} from "../../../common/Colors.ts";
 import DutyCard from "./DutyCard.tsx";
@@ -81,7 +81,7 @@ const MainPage: FC = () => {
                                         borderColor: 'transparent',
                                         background: Colors.Secondary,
                                         transition: "all 0.2s .12s",
-                                        fontSize: '20px',
+                                        fontSize: '17px',
                                         "&:hover": {
                                             color: Colors.Fourthly,
                                             backgroundColor: Colors.Primary,
@@ -98,7 +98,7 @@ const MainPage: FC = () => {
                                         background: Colors.Secondary,
                                         borderColor: 'transparent',
                                         transition: "all 0.2s .12s",
-                                        fontSize: '20px',
+                                        fontSize: '17px',
                                         "&:hover": {
                                             color: Colors.Fourthly,
                                             backgroundColor: Colors.Primary,
