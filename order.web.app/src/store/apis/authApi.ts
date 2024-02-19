@@ -1,9 +1,11 @@
 import {IAuthCommand} from "../../features/commands/IAuthCommand.ts";
-import {IUser} from "../../features/models/IUser.ts";
 import {login, logout} from "../slices/authSlice.ts";
 import {IAuthResponse} from "../../features/models/IAuthResponse.ts";
 import {ApiTags, baseApi} from "./baseApi.ts";
 import {HttpMethod} from "../../common/HttpMetod.ts";
+import {ILogoutCommand} from "../../features/commands/ILogoutCommand.ts";
+import {IRefreshCommand} from "../../features/commands/IRefreshCommand";
+
 
 export const authApi = baseApi.injectEndpoints({
     endpoints: builder => ({
@@ -23,7 +25,7 @@ export const authApi = baseApi.injectEndpoints({
                 }
             }
         }),
-        logout: builder.mutation<IUser, IAuthCommand>({
+        logout: builder.mutation<void, ILogoutCommand>({
             query: command => ({
                 url: `${ApiTags.Auth}/Logout`,
                 method: HttpMethod.POST,
@@ -37,11 +39,33 @@ export const authApi = baseApi.injectEndpoints({
                     console.log(error)
                 }
             }
-        })
+        }),
+        refresh: builder.mutation<IAuthResponse, IRefreshCommand>({
+            queryFn: async (command, api) => {
+                const response = await baseQuery({
+                    url: `${ApiTags.User}/refresh`,
+                    method: HttpMethod.POST,
+                    body: command,
+                }, api)
+
+                if (response.data) {
+                    const result = response.data as IAuthorizationResult
+                    await api.dispatch(login(result))
+                    return {data: result}
+                }
+                const authState = (api.getState() as AppState).auth;
+                await api.dispatch(authApi.endpoints.logout.initiate({
+                    accessToken: authState.accessToken,
+                    refreshToken: authState.refreshToken
+                } as ILogoutCommand))
+                return {error: response.error as FetchBaseQueryError}
+            },
+        }),
     })
 })
 
 export const {
     useLoginMutation,
-    useLogoutMutation
+    useLogoutMutation,
+    useRefreshMutatuon
 } = authApi

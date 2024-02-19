@@ -1,15 +1,16 @@
 import React, {FC, useState} from 'react';
-import {IUser} from "../../../features/models/IUser.ts";
 import {Box, Button, IconButton, Menu, MenuItem} from "@mui/material";
 import {Colors} from "../../../common/Colors.ts";
 import {AccountCircle} from "@mui/icons-material";
 import {useLogoutMutation} from "../../../store/apis/authApi.ts";
 import {useNavigate} from "react-router-dom";
-import {styled} from "@mui/material/styles";
+import {IUser} from "../../../features/models/IUser.ts";
 
 interface ILoginCheckerProps {
-    user: IUser | null
-    sx: styled
+    user: IUser | null,
+    accessToken: string,
+    refreshToken: string,
+    sx: any
 }
 
 const AuthHandler: FC<ILoginCheckerProps> = (props) => {
@@ -24,7 +25,10 @@ const AuthHandler: FC<ILoginCheckerProps> = (props) => {
     };
 
     const getLogout = async () => {
-        await logout()
+        await logout({
+            accessToken: props.accessToken,
+            refreshToken: props.refreshToken
+        })
         handleClose()
     }
     const handleClose = () => {
@@ -36,7 +40,7 @@ const AuthHandler: FC<ILoginCheckerProps> = (props) => {
             {props.user ?
                 <div>
                     <IconButton
-                        size='lagre'
+                        size='large'
                         onClick={handleMenu}
                         sx={
                             {

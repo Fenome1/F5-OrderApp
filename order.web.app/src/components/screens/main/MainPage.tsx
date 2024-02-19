@@ -5,6 +5,7 @@ import Futter from "../../ui/Futter.tsx";
 import {Colors} from "../../../common/Colors.ts";
 import DutyCard from "./DutyCard.tsx";
 import './style.css';
+import {useNavigate} from "react-router-dom";
 
 const duties = [
     {
@@ -57,6 +58,9 @@ const duties = [
 ];
 
 const MainPage: FC = () => {
+    const navigate = useNavigate()
+    const toOrder = () => navigate("/order")
+
     return (
         <Box sx={{
             display: 'flex',
@@ -66,7 +70,7 @@ const MainPage: FC = () => {
             <Nav/>
             <Stack className='duties-stack'>
                 <div className='duties-header'>
-                    <img src='src/assets/monic.png' alt='img' style={
+                    <img src='./src/assets/monic.png' alt='img' style={
                         {
                             filter: `drop-shadow(0 0 0.1rem ${Colors.Fourthly})`
                         }
@@ -75,12 +79,13 @@ const MainPage: FC = () => {
                         <div>
                             <p>Создание сайтов</p>
                             <Button variant="outlined"
+                                    onClick={toOrder}
                                     size={"large"}
                                     sx={{
                                         color: Colors.Primary,
                                         borderColor: 'transparent',
                                         background: Colors.Secondary,
-                                        transition: "all 0.2s .12s",
+                                        transition: "all 0.2s .01s",
                                         fontSize: '17px',
                                         "&:hover": {
                                             color: Colors.Fourthly,
@@ -97,7 +102,7 @@ const MainPage: FC = () => {
                                         color: Colors.Primary,
                                         background: Colors.Secondary,
                                         borderColor: 'transparent',
-                                        transition: "all 0.2s .12s",
+                                        transition: "all 0.2s .01s",
                                         fontSize: '17px',
                                         "&:hover": {
                                             color: Colors.Fourthly,
@@ -115,9 +120,14 @@ const MainPage: FC = () => {
                 </div>
                 <Grid container spacing={3} className='duties-grid'>
                     {duties.map((duty) => (
-                        <Grid item xs={12} sm={6} md={4} key={duty.id} style={{
-                            filter: `drop-shadow(0 0 0.15rem ${Colors.Fourthly})`
-                        }}>
+                        <Grid item xs={12} sm={6} md={4} key={duty.id}
+                              sx={{
+                                  filter: `drop-shadow(0 0 0.15rem ${Colors.Fourthly})`,
+                                  transition: "all 0.1s .01s",
+                                  "&:hover": {
+                                      filter: `drop-shadow(0 0 0.5rem ${Colors.Fourthly})`
+                                  }
+                              }}>
                             <DutyCard key={duty.id}
                                       title={duty.title}
                                       image={duty.image}

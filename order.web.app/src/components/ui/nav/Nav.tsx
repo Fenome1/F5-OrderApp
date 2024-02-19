@@ -2,11 +2,10 @@ import {AppBar, Box, Button, Toolbar} from "@mui/material";
 import {useTypedSelector} from "../../../store/hooks/hooks.ts";
 import {Colors} from "../../../common/Colors.ts";
 import AuthHandler from "./AuthHandler.tsx";
-import React from "react";
 import {useNavigate} from "react-router-dom";
 
 const Nav = () => {
-    const userState = useTypedSelector(state => state.auth)
+    const {user, accessToken, refreshToken} = useTypedSelector(state => state.auth)
     const navigate = useNavigate();
 
     const toOrder = () => navigate("/order")
@@ -37,10 +36,10 @@ const Nav = () => {
                             background: Colors.Secondary,
                             borderColor: Colors.Primary,
                         }
-                    }} onClick={toDuties} variant="h6">
+                    }} onClick={toDuties}>
                         Услуги
                     </Button>
-                    <Button onClick={toOrder} variant="h6" sx={{
+                    <Button onClick={toOrder} sx={{
                         color: Colors.Primary,
                         borderRadius: '10px',
                         background: Colors.Secondary,
@@ -57,7 +56,9 @@ const Nav = () => {
                         Сделать заказ
                     </Button>
                 </Box>
-                <AuthHandler sx={{flexGrow: 0}} user={userState.user}/>
+                <AuthHandler sx={{flexGrow: 0}} user={user} accessToken={accessToken!}
+                             refreshToken={refreshToken!}/>
+
             </Toolbar>
         </AppBar>
     );

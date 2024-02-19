@@ -1,6 +1,5 @@
-import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
-import {BASE_URL} from "../../../config.ts";
-import {RootState} from "../store.ts";
+import {createApi} from "@reduxjs/toolkit/query/react";
+import {fetchQueryWithReauth} from "../fetchBaseQueryWithReauth";
 
 export enum ApiTags {
     Auth = "Auth"
@@ -8,23 +7,13 @@ export enum ApiTags {
 
 export const baseApi = createApi({
     reducerPath: "baseApi",
-    baseQuery: fetchBaseQuery({
-        baseUrl: BASE_URL,
-        headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json",
-        },
-        prepareHeaders: (headers, {getState}) => {
-            const accessToken = (getState() as RootState).auth.accessToken ?? null;
-            if (accessToken) {
-                headers.set("Authorization", `Bearer ${accessToken}`)
-            }
-            return headers
-        }
-    }),
+    baseQuery: fetchQueryWithReauth,
     tagTypes: Object.values(ApiTags),
     refetchOnReconnect: true,
     refetchOnFocus: true,
+    keepUnusedDataFor: 0,
     endpoints: () => ({}),
 })
+
+
 
