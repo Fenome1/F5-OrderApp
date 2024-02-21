@@ -1,18 +1,11 @@
-import Nav from "../../ui/nav/Nav.tsx";
-import Futter from "../../ui/Futter.tsx";
+import DefaultPage from "../DefaultPage.tsx";
 import {Box} from "@mui/material";
 
 const OrderPage = () => {
     return (
-        <Box sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            height: "100vh"
-        }}>
-            <Nav/>
-            <div>qwe</div>
-            <Futter/>
-        </Box>
+        <DefaultPage>
+            <Box sx={{height: "100%"}}/>
+        </DefaultPage>
     );
 };
 

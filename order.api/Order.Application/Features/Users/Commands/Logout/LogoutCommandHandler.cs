@@ -8,31 +8,23 @@ using Order.Persistence.Context;
 
 namespace Order.Application.Features.Users.Commands.Logout;
 
-public class LogoutCommandHandler : IRequestHandler<LogoutCommand, bool>
+public class LogoutCommandHandler(OrderDbContext context, ITokenService tokenService, IMapper mapper)
+    : IRequestHandler<LogoutCommand, bool>
 {
-    private readonly OrderDbContext _context;
-    private readonly ITokenService _tokenService;
-    private readonly IMapper _mapper;
-
-    public LogoutCommandHandler(OrderDbContext context, ITokenService tokenService, IMapper mapper)
-    {
-        _context = context;
-        _tokenService = tokenService;
-        _mapper = mapper;
-    }
+    private readonly IMapper _mapper = mapper;
 
     public async Task<bool> Handle(LogoutCommand request, CancellationToken cancellationToken)
     {
         if (string.IsNullOrWhiteSpace(request.AccessToken) || string.IsNullOrWhiteSpace(request.RefreshToken))
             throw new NotFoundException(nameof(request));
 
-        var principal = _tokenService.GetPrincipalFromExpiredToken(request.AccessToken);
+        var principal = tokenService.GetPrincipalFromExpiredToken(request.AccessToken);
         var nameIdClaim = principal.FindFirst(ClaimTypes.NameIdentifier);
 
         if (nameIdClaim is null || !int.TryParse(nameIdClaim.Value, out var userId))
             throw new NotFoundException(nameof(nameIdClaim));
 
-        var user = await _context.Users
+        var user = await context.Users
             .Include(u => u.RefreshToken)
             .FirstOrDefaultAsync(u => u.UserId == userId);
 
@@ -42,8 +34,8 @@ public class LogoutCommandHandler : IRequestHandler<LogoutCommand, bool>
         if (user.RefreshToken is null)
             throw new NotFoundException(nameof(user.RefreshToken));
 
-        _context.RefreshTokens.Remove(user.RefreshToken);
+        context.RefreshTokens.Remove(user.RefreshToken);
 
-        return await _context.SaveChangesAsync(cancellationToken) > 0;
+        return await context.SaveChangesAsync(cancellationToken) > 0;
     }
 }

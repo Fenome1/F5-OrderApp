@@ -1,11 +1,10 @@
-import {FC} from 'react';
-import {Box, Button, Grid, Stack,} from '@mui/material';
-import Nav from "../../ui/nav/Nav.tsx";
-import Futter from "../../ui/Futter.tsx";
+import {Button, Grid, Stack,} from '@mui/material';
 import {Colors} from "../../../common/Colors.ts";
 import DutyCard from "./DutyCard.tsx";
 import './style.css';
 import {useNavigate} from "react-router-dom";
+import DefaultPage from "../DefaultPage.tsx";
+import {FC} from "react";
 
 const duties = [
     {
@@ -62,12 +61,7 @@ const MainPage: FC = () => {
     const toOrder = () => navigate("/order")
 
     return (
-        <Box sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            height: "100vh"
-        }}>
-            <Nav/>
+        <DefaultPage>
             <Stack className='duties-stack'>
                 <div className='duties-header'>
                     <img src='./src/assets/monic.png' alt='img' style={
@@ -136,8 +130,7 @@ const MainPage: FC = () => {
                     ))}
                 </Grid>
             </Stack>
-            <Futter/>
-        </Box>)
+        </DefaultPage>)
 };
 
 export default MainPage;

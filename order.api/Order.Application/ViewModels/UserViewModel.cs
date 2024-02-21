@@ -7,9 +7,9 @@ namespace Order.Application.ViewModels;
 public class UserViewModel : IMapWith<User>
 {
     public required int UserId { get; set; }
-    public required string Login { get; set; }
+    public required string Email { get; set; }
     public string? FirstName { get; set; }
-    public string? LastName { get; set; }
+    public string? SecondName { get; set; }
     public string? MiddleName { get; set; }
     public required RoleViewModel Role { get; set; }
 

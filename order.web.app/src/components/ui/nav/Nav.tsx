@@ -2,11 +2,12 @@ import {AppBar, Box, Button, Toolbar} from "@mui/material";
 import {useTypedSelector} from "../../../store/hooks/hooks.ts";
 import {Colors} from "../../../common/Colors.ts";
 import AuthHandler from "./AuthHandler.tsx";
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 
 const Nav = () => {
     const {user, accessToken, refreshToken} = useTypedSelector(state => state.auth)
     const navigate = useNavigate();
+    const location = useLocation()
 
     const toOrder = () => navigate("/order")
     const toDuties = () => navigate("/duties")
@@ -39,26 +40,29 @@ const Nav = () => {
                     }} onClick={toDuties}>
                         Услуги
                     </Button>
-                    <Button onClick={toOrder} sx={{
-                        color: Colors.Primary,
-                        borderRadius: '10px',
-                        background: Colors.Secondary,
-                        border: '2px solid',
-                        borderColor: Colors.Thirdly,
-                        transition: "all 0.2s .12s",
-                        fontSize: '17px',
-                        marginLeft: '20px',
-                        "&:hover": {
+                    {location.pathname !== '/auth' &&
+                        <Button onClick={toOrder} sx={{
+                            color: Colors.Primary,
+                            borderRadius: '10px',
                             background: Colors.Secondary,
-                            borderColor: Colors.Primary,
-                        }
-                    }}>
-                        Сделать заказ
-                    </Button>
+                            border: '2px solid',
+                            borderColor: Colors.Thirdly,
+                            transition: "all 0.2s .12s",
+                            fontSize: '17px',
+                            marginLeft: '20px',
+                            "&:hover": {
+                                background: Colors.Secondary,
+                                borderColor: Colors.Primary,
+                            }
+                        }}>
+                            Сделать заказ
+                        </Button>
+                    }
                 </Box>
-                <AuthHandler sx={{flexGrow: 0}} user={user} accessToken={accessToken!}
-                             refreshToken={refreshToken!}/>
-
+                {location.pathname === '/duties'  &&
+                    <AuthHandler sx={{flexGrow: 0}} user={user} accessToken={accessToken!}
+                                 refreshToken={refreshToken!}/>
+                }
             </Toolbar>
         </AppBar>
     );

@@ -2,7 +2,8 @@ import {createApi} from "@reduxjs/toolkit/query/react";
 import {fetchQueryWithReauth} from "../fetchBaseQueryWithReauth";
 
 export enum ApiTags {
-    Auth = "Auth"
+    Auth = "Auth",
+    User = "User"
 }
 
 export const baseApi = createApi({

@@ -1,4 +1,4 @@
-import {IUser} from "./IUser.ts";
+import {IUser} from "../IUser.ts";
 
 export interface IAuthResponse {
     accessToken: string

@@ -1,11 +1,13 @@
-import {IAuthCommand} from "../../features/commands/IAuthCommand.ts";
+import {IAuthCommand} from "../../features/commands/auth/IAuthCommand.ts";
 import {login, logout} from "../slices/authSlice.ts";
-import {IAuthResponse} from "../../features/models/IAuthResponse.ts";
+import {IAuthResponse} from "../../features/models/reasponses/IAuthResponse.ts";
 import {ApiTags, baseApi} from "./baseApi.ts";
 import {HttpMethod} from "../../common/HttpMetod.ts";
-import {ILogoutCommand} from "../../features/commands/ILogoutCommand.ts";
-import {IRefreshCommand} from "../../features/commands/IRefreshCommand";
-
+import {ILogoutCommand} from "../../features/commands/auth/ILogoutCommand.ts";
+import {IRefreshCommand} from "../../features/commands/auth/IRefreshCommand.ts";
+import {RootState} from "../store.ts";
+import {FetchBaseQueryError} from "@reduxjs/toolkit/query/react";
+import {baseQuery} from "../fetchBaseQueryWithReauth.ts";
 
 export const authApi = baseApi.injectEndpoints({
     endpoints: builder => ({
@@ -41,19 +43,19 @@ export const authApi = baseApi.injectEndpoints({
             }
         }),
         refresh: builder.mutation<IAuthResponse, IRefreshCommand>({
-            queryFn: async (command, api) => {
+            queryFn: async (command, api, extraOptions) => {
                 const response = await baseQuery({
                     url: `${ApiTags.User}/refresh`,
                     method: HttpMethod.POST,
                     body: command,
-                }, api)
+                }, api, extraOptions)
 
                 if (response.data) {
-                    const result = response.data as IAuthorizationResult
+                    const result = response.data as IAuthResponse
                     await api.dispatch(login(result))
                     return {data: result}
                 }
-                const authState = (api.getState() as AppState).auth;
+                const authState = (api.getState() as RootState).auth;
                 await api.dispatch(authApi.endpoints.logout.initiate({
                     accessToken: authState.accessToken,
                     refreshToken: authState.refreshToken
@@ -67,5 +69,5 @@ export const authApi = baseApi.injectEndpoints({
 export const {
     useLoginMutation,
     useLogoutMutation,
-    useRefreshMutatuon
+    useRefreshMutation
 } = authApi

@@ -32,7 +32,7 @@ public class TokenService(IOptions<JwtOptions> options) : ITokenService
 
         return principal;
     }
-    
+
     public string GenerateAccessToken(User user)
     {
         var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_options.SecretKey));
@@ -58,6 +58,7 @@ public class TokenService(IOptions<JwtOptions> options) : ITokenService
 
         return tokenString;
     }
+
     public RefreshToken GenerateRefreshToken(int userId)
     {
         var randomNumber = new byte[128];

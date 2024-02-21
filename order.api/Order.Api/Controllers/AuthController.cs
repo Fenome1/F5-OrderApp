@@ -22,7 +22,7 @@ public class AuthController : BaseController
         }
         catch (Exception e)
         {
-            return BadRequest($"Ошибка при выходе в аккаунт: {e.Message}");
+            return BadRequest($"{e.Message}");
         }
     }
 

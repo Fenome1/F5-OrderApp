@@ -1,5 +1,5 @@
 import {Button, Stack, TextField} from "@mui/material";
-import {IAuthCommand} from "../../../features/commands/IAuthCommand.ts";
+import {IAuthCommand} from "../../../features/commands/auth/IAuthCommand.ts";
 import {Person,} from "@mui/icons-material";
 import {Colors} from "../../../common/Colors.ts";
 import './style.css'
@@ -9,7 +9,13 @@ import {useNavigate} from "react-router-dom";
 
 const AuthForm = () => {
 
-    const {register, handleSubmit} = useForm<IAuthCommand>()
+    const {register, resetField, handleSubmit} = useForm<IAuthCommand>({
+        defaultValues: {
+            login: '',
+            password: ''
+        }
+    })
+
     const [login, {isLoading}] = useLoginMutation();
     const navigate = useNavigate()
 
@@ -18,6 +24,7 @@ const AuthForm = () => {
         if ("data" in result && result.data) {
             navigate("/duties")
         }
+        resetField("password")
     };
 
     return (

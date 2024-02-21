@@ -2,6 +2,10 @@
     min-height: 10vh;
     max-width: 450px;
     height: 310px;
+    text-align: justify;
+    word-break: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .duties-stack {

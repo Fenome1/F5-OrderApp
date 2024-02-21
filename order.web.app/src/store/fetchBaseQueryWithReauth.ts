@@ -2,7 +2,7 @@ import {BASE_URL} from "../../config";
 import {RootState} from "./store";
 import {Mutex} from "async-mutex";
 import {BaseQueryFn, FetchArgs, fetchBaseQuery, FetchBaseQueryError} from "@reduxjs/toolkit/query";
-import {IRefreshCommand} from "../features/commands/IRefreshCommand";
+import {IRefreshCommand} from "../features/commands/auth/IRefreshCommand.ts";
 import {authApi} from "./apis/authApi";
 import {message} from "antd";
 
@@ -31,11 +31,11 @@ async function showError(error: FetchBaseQueryError | undefined) {
 
     const { status, data } = error
 
-    if (status && data && (data as any).error) {
-        msg = `[${status}] ${(data as any)?.error}`
+    if (status && data && (data)) {
+        msg = `${(data)}`
     }
 
-    message.error(msg, 5);
+    message.error(msg, 3);
 }
 
 const mutex = new Mutex()

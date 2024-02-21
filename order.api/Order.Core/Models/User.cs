@@ -21,6 +21,8 @@ public partial class User
 
     public bool IsDelete { get; set; }
 
+    public virtual ICollection<ClientOrder> ClientOrders { get; set; } = new List<ClientOrder>();
+
     public virtual RefreshToken? RefreshToken { get; set; }
 
     public virtual Role RoleNavigation { get; set; } = null!;

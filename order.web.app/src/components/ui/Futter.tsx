@@ -10,7 +10,8 @@ const Futter = () => {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            height: '80px'
+            height: '80px',
+            flexGrow: 1
         }}>
             <Box sx={{
                 display: "flex",
