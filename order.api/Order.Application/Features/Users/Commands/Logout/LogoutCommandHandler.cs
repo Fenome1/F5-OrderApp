@@ -11,8 +11,6 @@ namespace Order.Application.Features.Users.Commands.Logout;
 public class LogoutCommandHandler(OrderDbContext context, ITokenService tokenService, IMapper mapper)
     : IRequestHandler<LogoutCommand, bool>
 {
-    private readonly IMapper _mapper = mapper;
-
     public async Task<bool> Handle(LogoutCommand request, CancellationToken cancellationToken)
     {
         if (string.IsNullOrWhiteSpace(request.AccessToken) || string.IsNullOrWhiteSpace(request.RefreshToken))
@@ -26,7 +24,8 @@ public class LogoutCommandHandler(OrderDbContext context, ITokenService tokenSer
 
         var user = await context.Users
             .Include(u => u.RefreshToken)
-            .FirstOrDefaultAsync(u => u.UserId == userId);
+            .FirstOrDefaultAsync(u => u.UserId == userId,
+                cancellationToken);
 
         if (user is null)
             throw new NotFoundException(nameof(user));

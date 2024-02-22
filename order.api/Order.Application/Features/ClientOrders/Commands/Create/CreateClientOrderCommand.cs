@@ -6,7 +6,7 @@ namespace Order.Application.Features.ClientOrders.Commands.Create;
 
 public class CreateClientOrderCommand : IRequest<int>, IMapWith<ClientOrder>
 {
-    public required int ClientId { get; set; }
+    public required int UserId { get; set; }
     public int? CategoryId { get; set; }
     public string? Comment { get; set; }
 }

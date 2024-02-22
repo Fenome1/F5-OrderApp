@@ -29,7 +29,7 @@ async function showError(error: FetchBaseQueryError | undefined) {
 
     let msg = 'Неизвестная ошибка!'
 
-    const { status, data } = error
+    const {status, data} = error
 
     if (status && data && (data)) {
         msg = `${(data)}`
@@ -44,7 +44,7 @@ export const fetchQueryWithReauth: BaseQueryFn<
     string | FetchArgs,
     unknown,
     FetchBaseQueryError
-    > = async (args, api, extraOptions) => {
+> = async (args, api, extraOptions) => {
     await mutex.waitForUnlock()
     let result = await baseQuery(args, api, extraOptions)
     if (result.error && result.error.status === 401) {
@@ -63,8 +63,7 @@ export const fetchQueryWithReauth: BaseQueryFn<
                 }
 
                 result = await baseQuery(args, api, extraOptions)
-            }
-            finally {
+            } finally {
                 await showError(result.error)
                 await release()
             }

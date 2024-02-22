@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿namespace Order.Core.Models;
 
-namespace Order.Core.Models;
-
-public partial class User
+public class User
 {
     public int UserId { get; set; }
 
@@ -19,7 +16,7 @@ public partial class User
 
     public string? MiddleName { get; set; }
 
-    public bool IsDelete { get; set; }
+    public bool IsDeleted { get; set; }
 
     public virtual ICollection<ClientOrder> ClientOrders { get; set; } = new List<ClientOrder>();
 

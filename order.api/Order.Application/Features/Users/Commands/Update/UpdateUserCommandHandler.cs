@@ -3,7 +3,6 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Order.Application.Common.Exceptions;
 using Order.Application.ViewModels;
-using Order.Core.Models;
 using Order.Persistence.Context;
 
 namespace Order.Application.Features.Users.Commands.Update;
@@ -15,21 +14,20 @@ public class UpdateUserCommandHandler(IMapper mapper, OrderDbContext context)
     {
         var user = await context.Users
             .FirstOrDefaultAsync(u => u.UserId == request.UserId,
-                cancellationToken: cancellationToken);
+                cancellationToken);
 
         if (user is null)
             throw new NotFoundException(nameof(user));
-
 
         if (!string.IsNullOrWhiteSpace(request.Login))
         {
             var existedUser = await context.Users
                 .FirstOrDefaultAsync(u => u.Login == request.Login,
-                    cancellationToken: cancellationToken);
+                    cancellationToken);
 
             if (existedUser.UserId != request.UserId)
                 throw new Exception("Логин уже занят");
-            
+
             user.Login = request.Login;
         }
 
@@ -37,7 +35,6 @@ public class UpdateUserCommandHandler(IMapper mapper, OrderDbContext context)
         user.SecondName = request.SecondName;
         user.MiddleName = request.MiddleName;
 
-        //var user = mapper.Map<User>(request);
         context.Users.Update(user);
         await context.SaveChangesAsync(cancellationToken);
 

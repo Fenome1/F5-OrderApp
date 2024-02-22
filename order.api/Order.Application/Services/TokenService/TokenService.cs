@@ -46,9 +46,9 @@ public class TokenService(IOptions<JwtOptions> options) : ITokenService
         };
 
         var token = new JwtSecurityToken(
-            issuer: _options.Issuer,
-            audience: _options.Audience,
-            claims: claims,
+            _options.Issuer,
+            _options.Audience,
+            claims,
             expires: DateTime.Now.AddMinutes(_options.ExpiresMinutes),
             signingCredentials: credentials
         );

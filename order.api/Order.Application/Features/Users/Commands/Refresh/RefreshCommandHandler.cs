@@ -2,10 +2,8 @@
 using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.JsonWebTokens;
 using Order.Application.Common.Exceptions;
 using Order.Application.Common.Interfaces;
-using Order.Application.Features.Users.Commands.Login;
 using Order.Application.ViewModels;
 using Order.Persistence.Context;
 
@@ -43,7 +41,7 @@ public class RefreshCommandHandler(OrderDbContext context, ITokenService tokenSe
             context.RefreshTokens.Update(newRefreshToken);
             await context.SaveChangesAsync(cancellationToken);
 
-            return new AuthResultViewModel()
+            return new AuthResultViewModel
             {
                 AccessToken = newAccessToken,
                 RefreshToken = newRefreshToken.Token,
@@ -51,7 +49,7 @@ public class RefreshCommandHandler(OrderDbContext context, ITokenService tokenSe
             };
         }
 
-        return new AuthResultViewModel()
+        return new AuthResultViewModel
         {
             AccessToken = tokenService.GenerateAccessToken(user),
             RefreshToken = user.RefreshToken.Token,

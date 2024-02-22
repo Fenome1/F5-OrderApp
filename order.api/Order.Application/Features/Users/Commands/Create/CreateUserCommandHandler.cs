@@ -22,7 +22,7 @@ public class CreateUserCommandHandler(IPasswordHasher passwordHasher, IMapper ma
 
         await context.Users.AddAsync(user, cancellationToken);
         await context.SaveChangesAsync(cancellationToken);
-        
+
         return user.UserId;
     }
 }

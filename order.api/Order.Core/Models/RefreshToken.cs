@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿namespace Order.Core.Models;
 
-namespace Order.Core.Models;
-
-public partial class RefreshToken
+public class RefreshToken
 {
     public int RefreshTokenId { get; set; }
 

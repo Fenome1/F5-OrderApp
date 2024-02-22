@@ -13,7 +13,7 @@ public class GetGuestQueryHandler(OrderDbContext context) : IRequestHandler<GetG
         var guest = await context.Guests
             .Include(g => g.GuestOrders)
             .FirstOrDefaultAsync(g => g.GuestId == request.GuestId,
-                cancellationToken: cancellationToken);
+                cancellationToken);
 
         if (guest is null)
             throw new NotFoundException(nameof(guest));

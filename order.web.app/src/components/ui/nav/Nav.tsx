@@ -59,7 +59,7 @@ const Nav = () => {
                         </Button>
                     }
                 </Box>
-                {location.pathname === '/duties'  &&
+                {location.pathname === '/duties' &&
                     <AuthHandler sx={{flexGrow: 0}} user={user} accessToken={accessToken!}
                                  refreshToken={refreshToken!}/>
                 }

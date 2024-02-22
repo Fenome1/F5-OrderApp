@@ -1,4 +1,4 @@
-export interface IUserUpdateResponse{
+export interface IUserUpdateResponse {
     userId: number,
     login: string | null,
     firstName: string | null,

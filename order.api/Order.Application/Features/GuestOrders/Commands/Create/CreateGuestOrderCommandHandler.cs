@@ -14,7 +14,7 @@ public class CreateGuestOrderCommandHandler(OrderDbContext context, IMapper mapp
     {
         var guest = await context.Guests
             .FirstOrDefaultAsync(g => g.Email == request.Email,
-                cancellationToken: cancellationToken);
+                cancellationToken);
 
         var guestOrder = mapper.Map<GuestOrder>(request);
 
@@ -26,7 +26,7 @@ public class CreateGuestOrderCommandHandler(OrderDbContext context, IMapper mapp
                     Email = request.Email
                 },
                 cancellationToken);
-            
+
             guestOrder.GuestId = guestId;
         }
         else

@@ -23,7 +23,7 @@ public class GetUserQueryHandler : IRequestHandler<GetUserQuery, UserViewModel>
         var user = await _context.Users
             .Include(u => u.RoleNavigation)
             .FirstOrDefaultAsync(u => u.UserId == request.UserId,
-                cancellationToken: cancellationToken);
+                cancellationToken);
 
         if (user is null)
             throw new NotFoundException(nameof(user));
