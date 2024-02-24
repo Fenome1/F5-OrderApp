@@ -3,7 +3,10 @@ import {fetchQueryWithReauth} from "../fetchBaseQueryWithReauth";
 
 export enum ApiTags {
     Auth = "Auth",
-    User = "User"
+    User = "User",
+    Category = "Category",
+    UserOrder = "UserOrder",
+    GuestOrder = "GuestOrder"
 }
 
 export const baseApi = createApi({

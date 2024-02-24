@@ -55,7 +55,7 @@ const Nav = () => {
                                 borderColor: Colors.Primary,
                             }
                         }}>
-                            Сделать заказ
+                            Заказать сайт
                         </Button>
                     }
                 </Box>

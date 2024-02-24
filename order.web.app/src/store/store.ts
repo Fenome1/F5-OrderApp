@@ -1,6 +1,5 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
 import {baseApi} from "./apis/baseApi.ts";
-import {authApi} from "./apis/authApi.ts";
 import authSlice from "./slices/authSlice.ts";
 import storage from "redux-persist/es/storage";
 import persistStore from "redux-persist/es/persistStore";
@@ -26,7 +25,7 @@ export const setupStore = () => {
                 serializableCheck: {
                     ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
                 }
-            }).concat(baseApi.middleware, authApi.middleware),
+            }).concat(baseApi.middleware),
     })
 }
 

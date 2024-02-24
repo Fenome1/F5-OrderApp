@@ -1,0 +1,27 @@
+.order-card{
+    display: grid;
+    place-items: center;
+    padding: 35px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 360px;
+}
+
+.order-content{
+    display: grid;
+    place-items: center;
+}
+
+.form-header{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+}
+
+.order-stack{
+    margin-top: 10px;
+    width: 300px;
+}

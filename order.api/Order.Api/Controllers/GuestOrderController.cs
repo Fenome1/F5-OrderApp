@@ -26,6 +26,7 @@ public class GuestOrderController : BaseController
     }
 
     [HttpGet]
+    [Authorize(Roles = "Admin")]
     [Route(nameof(Get))]
     public async Task<ActionResult<PagedList<GuestOrderViewModel>>> Get([FromQuery] ListGuestOrdersQuery query)
     {

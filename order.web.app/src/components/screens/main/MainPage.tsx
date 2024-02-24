@@ -88,7 +88,7 @@ const MainPage: FC = () => {
                                             fontSize: '25px'
                                         }
                                     }}>
-                                Сделать заказ
+                                Заказать сайт
                             </Button>
                             <Button variant="outlined" href="https://f5-studio.ru/portfolio/"
                                     size={"large"}
