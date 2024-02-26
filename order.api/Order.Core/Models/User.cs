@@ -1,10 +1,13 @@
-﻿namespace Order.Core.Models;
+﻿using System;
+using System.Collections.Generic;
 
-public class User
+namespace Order.Core.Models;
+
+public partial class User
 {
     public int UserId { get; set; }
 
-    public string Login { get; set; } = null!;
+    public string Email { get; set; } = null!;
 
     public string Password { get; set; } = null!;
 

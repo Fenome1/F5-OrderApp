@@ -1,7 +1,7 @@
 import {Button, CircularProgress, Stack, TextField} from "@mui/material";
 import {Person} from "@mui/icons-material";
 import {Colors} from "../../../common/Colors.ts";
-import './style.css'
+import './style.scss'
 import {useUpdateUserMutation} from "../../../store/apis/userApi.ts";
 import {useTypedSelector} from "../../../store/hooks/hooks.ts";
 import {useForm} from "react-hook-form";
@@ -14,7 +14,7 @@ const ProfileForm = () => {
 
     const {register, handleSubmit} = useForm<IUserUpdateCommand>({
         defaultValues: {
-            login: user?.login,
+            email: user?.email,
             firstName: user?.firstName,
             secondName: user?.secondName,
             middleName: user?.middleName
@@ -31,7 +31,7 @@ const ProfileForm = () => {
             {isLoading ? <CircularProgress/>
                 :
                 <Stack>
-                    <span className='auth-label'>
+                    <span className='person-header-label'>
                     <Person style={{marginRight: "10px", marginTop: "5px", color: Colors.Fourthly}}/>
                     <h1 children='Профиль' style={{fontSize: '30pt', color: Colors.Fourthly}}/>
                 </span>
@@ -44,8 +44,9 @@ const ProfileForm = () => {
                                 }
                             }
                         }}
-                        {...register("login")}
-                        label="Логин"
+                        {...register("email")}
+                        type='email'
+                        label="Почта"
                         size={"small"}
                         style={{marginBottom: '30px'}}
                         InputProps={{

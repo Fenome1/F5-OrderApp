@@ -1,4 +1,3 @@
-
 export interface ICreateGuestOrderCommand {
     email: string,
     categoryId: number | undefined,

@@ -1,9 +1,9 @@
 import {Button, Grid, Stack,} from '@mui/material';
 import {Colors} from "../../../common/Colors.ts";
 import DutyCard from "./DutyCard.tsx";
-import './style.css';
+import './style.scss';
 import {useNavigate} from "react-router-dom";
-import DefaultPage from "../DefaultPage.tsx";
+import DefaultPage from "../../ui/DefaultPage.tsx";
 import {FC} from "react";
 
 const duties = [
@@ -58,12 +58,12 @@ const duties = [
 
 const MainPage: FC = () => {
     const navigate = useNavigate()
-    const toOrder = () => navigate("/order")
+    const toOrder = () => navigate("/create-order")
 
     return (
         <DefaultPage>
             <Stack className='duties-stack'>
-                <div className='duties-header'>
+                <div className='duties-stack-header'>
                     <img src='./src/assets/monic.png' alt='img' style={
                         {
                             filter: `drop-shadow(0 0 0.1rem ${Colors.Fourthly})`
@@ -72,7 +72,7 @@ const MainPage: FC = () => {
                     <div className='main-duty'>
                         <div>
                             <p>Создание сайтов</p>
-                            <Button variant="outlined"
+                            <Button className='main-buttons' variant="outlined"
                                     onClick={toOrder}
                                     size={"large"}
                                     sx={{
@@ -85,12 +85,12 @@ const MainPage: FC = () => {
                                             color: Colors.Fourthly,
                                             backgroundColor: Colors.Primary,
                                             borderColor: Colors.Secondary,
-                                            fontSize: '25px'
+                                            fontSize: '20px'
                                         }
                                     }}>
                                 Заказать сайт
                             </Button>
-                            <Button variant="outlined" href="https://f5-studio.ru/portfolio/"
+                            <Button className='main-buttons' variant="outlined" href="https://f5-studio.ru/portfolio/"
                                     size={"large"}
                                     sx={{
                                         color: Colors.Primary,
@@ -102,7 +102,7 @@ const MainPage: FC = () => {
                                             color: Colors.Fourthly,
                                             backgroundColor: Colors.Primary,
                                             borderColor: Colors.Secondary,
-                                            fontSize: '25px'
+                                            fontSize: '20px'
                                         }
                                     }}>
                                 Перейти в портфолио

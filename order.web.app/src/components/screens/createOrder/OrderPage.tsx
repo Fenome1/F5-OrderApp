@@ -1,8 +1,7 @@
-import DefaultPage from "../DefaultPage.tsx";
-import {Box} from "@mui/material";
+import DefaultPage from "../../ui/DefaultPage.tsx";
 import {useTypedSelector} from "../../../store/hooks/hooks.ts";
 import ClientOrderForm from "./ClientOrderForm.tsx";
-import './style.css'
+import './style.scss'
 import {useGetCategoriesQuery} from "../../../store/apis/categoryApi.ts";
 import GuestOrderForm from "./GuestOrderForm.tsx";
 

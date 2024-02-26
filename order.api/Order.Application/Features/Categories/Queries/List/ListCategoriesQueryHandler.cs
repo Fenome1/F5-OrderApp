@@ -3,7 +3,6 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Order.Application.Common.Exceptions;
 using Order.Application.ViewModels;
-using Order.Core.Models;
 using Order.Persistence.Context;
 
 namespace Order.Application.Features.Categories.Queries.List;

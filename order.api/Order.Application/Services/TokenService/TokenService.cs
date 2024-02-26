@@ -42,7 +42,7 @@ public class TokenService(IOptions<JwtOptions> options) : ITokenService
         {
             new(JwtRegisteredClaimNames.Sub, user.UserId.ToString()),
             new(ClaimTypes.Role, user.RoleNavigation.Title),
-            new(JwtRegisteredClaimNames.UniqueName, user.Login)
+            new(JwtRegisteredClaimNames.UniqueName, user.Email)
         };
 
         var token = new JwtSecurityToken(

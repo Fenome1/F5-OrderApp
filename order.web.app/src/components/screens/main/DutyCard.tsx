@@ -1,7 +1,7 @@
 import {FC} from 'react';
 import {Card, CardContent, CardMedia, Typography} from "@mui/material";
 import {Colors} from "../../../common/Colors.ts";
-import './style.css';
+import './style.scss';
 
 
 interface IDutyProps {

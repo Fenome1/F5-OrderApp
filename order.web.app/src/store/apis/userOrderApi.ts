@@ -18,7 +18,7 @@ export const userOrderApi = baseApi.injectEndpoints({
                 } catch (error) {
                     console.log(error)
                 }
-                message.success("Заявка успешно отправлена. Скоро с вами свяжется нас менеджер!", 10)
+                message.success("Заявка успешно отправлена. Скоро с вами свяжется наш менеджер!", 10)
             },
             invalidatesTags: [{type: ApiTags.UserOrder}],
         }),

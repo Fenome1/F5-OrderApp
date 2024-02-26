@@ -1,17 +1,12 @@
 import {Box, IconButton, Typography} from "@mui/material";
 import {Colors} from "../../common/Colors.ts";
+import './style.scss'
 
 const Futter = () => {
     return (
-        <Box sx={{
+        <Box className='main-futter' sx={{
             backgroundColor: Colors.Fourthly,
             color: Colors.Primary,
-            padding: "24px 16px",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            height: '80px',
-            flexGrow: 1
         }}>
             <Box sx={{
                 display: "flex",
@@ -20,7 +15,7 @@ const Futter = () => {
                 <Typography variant="body2">© 2024 DIGITAL-АГЕНТСТВО F5</Typography>
             </Box>
             <Box>
-                <IconButton href="tel:+7 8182 47 56 47" sx={{
+                <IconButton sx={{
                     color: Colors.Primary,
                     textDecoration: "none",
                     fontSize: "18px",

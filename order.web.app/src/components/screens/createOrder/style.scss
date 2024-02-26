@@ -1,0 +1,30 @@
+.create-order-card {
+  display: grid;
+  place-items: center;
+  padding: 35px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 360px;
+
+  .create-order-content {
+    display: grid;
+    place-items: center;
+
+    .create-order-form-header {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+
+    }
+
+    .create-order-stack {
+      margin-top: 10px;
+      width: 300px;
+    }
+  }
+}
+
+
+

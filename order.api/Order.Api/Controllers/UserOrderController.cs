@@ -11,7 +11,7 @@ namespace Order.Api.Controllers;
 public class UserOrderController : BaseController
 {
     [HttpPost]
-    [AllowAnonymous]
+    [Authorize(Roles = "Client")]
     [Route(nameof(Create))]
     public async Task<ActionResult<int>> Create([FromBody] CreateClientOrderCommand command)
     {
@@ -26,6 +26,7 @@ public class UserOrderController : BaseController
     }
 
     [HttpGet]
+    [Authorize(Roles = "Admin")]
     [Route(nameof(Get))]
     public async Task<ActionResult<PagedList<ClientOrderViewModel>>> Get([FromQuery] ListClientOrdersQuery query)
     {

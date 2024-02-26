@@ -19,16 +19,16 @@ public class UpdateUserCommandHandler(IMapper mapper, OrderDbContext context)
         if (user is null)
             throw new NotFoundException(nameof(user));
 
-        if (!string.IsNullOrWhiteSpace(request.Login))
+        if (!string.IsNullOrWhiteSpace(request.Email))
         {
             var existedUser = await context.Users
-                .FirstOrDefaultAsync(u => u.Login == request.Login,
+                .FirstOrDefaultAsync(u => u.Email == request.Email,
                     cancellationToken);
 
-            if (existedUser.UserId != request.UserId)
-                throw new Exception("Логин уже занят");
+            if (existedUser is not null && existedUser.UserId != request.UserId)
+                throw new Exception("Почта уже занята");
 
-            user.Login = request.Login;
+            user.Email = request.Email;
         }
 
         user.FirstName = request.FirstName;

@@ -1,7 +1,7 @@
 import AuthForm from "./AuthForm.tsx";
 import {Box, Card} from "@mui/material";
 import {Colors} from "../../../common/Colors.ts";
-import './style.css'
+import './style.scss'
 import Nav from "../../ui/nav/Nav.tsx";
 
 const AuthPage = () => {

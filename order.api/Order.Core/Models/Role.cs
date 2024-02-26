@@ -1,6 +1,9 @@
-﻿namespace Order.Core.Models;
+﻿using System;
+using System.Collections.Generic;
 
-public class Role
+namespace Order.Core.Models;
+
+public partial class Role
 {
     public int RoleId { get; set; }
 

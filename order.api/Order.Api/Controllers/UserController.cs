@@ -25,6 +25,7 @@ public class UserController : BaseController
     }
 
     [HttpPut("Update", Name = "Update")]
+    [Authorize(Roles = "Client")]
     [Authorize]
     public async Task<ActionResult<UserViewModel>> Update([FromBody] UpdateUserCommand command)
     {
@@ -39,6 +40,7 @@ public class UserController : BaseController
     }
 
     [HttpGet]
+    [Authorize(Roles="Admin")]
     [Route("{userId}")]
     public async Task<ActionResult<UserViewModel>> Get(int userId)
     {

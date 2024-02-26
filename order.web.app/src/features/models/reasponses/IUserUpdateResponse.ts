@@ -1,6 +1,6 @@
 export interface IUserUpdateResponse {
     userId: number,
-    login: string | null,
+    email: string | null,
     firstName: string | null,
     secondName: string | null,
     middleName: string | null,

@@ -5,6 +5,6 @@ namespace Order.Application.Features.Users.Commands.Login;
 
 public class LoginCommand : IRequest<AuthResultViewModel>
 {
-    public required string Login { get; set; }
+    public required string Email { get; set; }
     public required string Password { get; set; }
 }

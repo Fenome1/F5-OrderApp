@@ -12,7 +12,7 @@ public class CreateUserCommandHandler(IPasswordHasher passwordHasher, IMapper ma
     public async Task<int> Handle(CreateUserCommand request, CancellationToken cancellationToken)
     {
         var isLoginExist = context.Users
-            .Any(u => u.Login == request.Login);
+            .Any(u => u.Email == request.Email);
 
         if (isLoginExist)
             throw new Exception("Пользователь с таким логином уже существует");

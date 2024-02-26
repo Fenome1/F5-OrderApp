@@ -19,7 +19,7 @@ public class LoginCommandHandler(
         var user = await context.Users
             .Include(u => u.RefreshToken)
             .Include(u => u.RoleNavigation)
-            .FirstOrDefaultAsync(u => u.Login == command.Login,
+            .FirstOrDefaultAsync(u => u.Email == command.Email,
                 cancellationToken);
 
         if (user is null)

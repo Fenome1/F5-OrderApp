@@ -2,16 +2,17 @@ import {Button, Stack, TextField} from "@mui/material";
 import {IAuthCommand} from "../../../features/commands/auth/IAuthCommand.ts";
 import {Person,} from "@mui/icons-material";
 import {Colors} from "../../../common/Colors.ts";
-import './style.css'
+import './style.scss'
 import {useLoginMutation} from "../../../store/apis/authApi.ts";
 import {useForm} from "react-hook-form";
 import {useNavigate} from "react-router-dom";
+import {Roles} from "../../../common/Roles.ts";
 
 const AuthForm = () => {
 
     const {register, resetField, handleSubmit} = useForm<IAuthCommand>({
         defaultValues: {
-            login: '',
+            email: '',
             password: ''
         }
     })
@@ -22,7 +23,14 @@ const AuthForm = () => {
     const onSubmit = async (data: IAuthCommand) => {
         const result = await login(data)
         if ("data" in result && result.data) {
-            navigate("/duties")
+            switch (result.data.user.role.roleId) {
+                case Roles.Client:
+                    navigate("/duties")
+                    break
+                case Roles.Admin:
+                    navigate("/orders")
+                    break
+            }
         }
         resetField("password")
     };
@@ -30,7 +38,7 @@ const AuthForm = () => {
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <Stack>
-                <span className='auth-label'>
+                <span className='person-header-label'>
                     <Person style={{marginRight: "10px", marginTop: "5px", color: Colors.Fourthly}}/>
                     <h1 children='Авторизация' style={{fontSize: '30pt', color: Colors.Fourthly}}/>
                 </span>
@@ -43,8 +51,9 @@ const AuthForm = () => {
                         }
                     }}
                     required={true}
-                    {...register("login")}
-                    label="Логин"
+                    {...register("email")}
+                    label="Email"
+                    type='email'
                     size={"small"}
                     style={{marginBottom: '30px'}}
                     InputProps={{
