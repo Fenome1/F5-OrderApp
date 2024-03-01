@@ -13,7 +13,7 @@ const Nav = () => {
 
     const toOrder = () => navigate("/create-order")
     const toDuties = () => navigate("/duties")
-    const toOrders = () => navigate("/orders")
+    const toOrders = () => navigate("/check-orders")
 
     return (
         <AppBar position='sticky'

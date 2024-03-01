@@ -1,0 +1,76 @@
+.order-page-content {
+  margin: 10px;
+  display: flex;
+  align-content: center;
+  text-align: center;
+  flex-grow: 1;
+
+  .menu {
+
+    border-radius: 7px;
+    margin: 10px;
+
+    h1 {
+
+    }
+
+    .nav-list {
+
+      &:nth-child(even) {
+
+      }
+    }
+  }
+
+  .orders-content {
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    flex-grow: 1;
+
+    .guest-card {
+      display: flex;
+      flex-direction: column;
+      margin: 5px;
+      height: 300px;
+      max-height: 300px;
+
+      .guest-card-content {
+        display: flex;
+        flex-grow: 1;
+        text-align: justify;
+        flex-direction: column;
+
+        .guest-card-title {
+          display: flex;
+
+        }
+
+        .guest-card-comment {
+          display: flex;
+          max-height: 120px;
+          overflow: auto;
+        }
+
+        .guest-card-futter {
+          display: flex;
+          justify-content: space-between;
+          align-items: end;
+          flex-grow: 1;
+        }
+      }
+    }
+
+    .guest-pagination-bar {
+      display: flex;
+      justify-content: center;
+      margin: 10px 0 10px 0;
+    }
+
+  }
+}
+
+
+

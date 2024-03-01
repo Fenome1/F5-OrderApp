@@ -11,7 +11,7 @@ interface IUsePaginationQuery {
 export const usePaginationQuery = (
     {
         filter = DeletionStatus.Available,
-        pageSize = 10,
+        pageSize = 12,
         page = 1
     }: IUsePaginationQuery = {}) => {
 

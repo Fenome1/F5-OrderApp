@@ -1,7 +1,8 @@
 const ClientsOrders = () => {
+
     return (
         <div>
-            Клиент
+            Заказы клиентов
         </div>
     );
 };

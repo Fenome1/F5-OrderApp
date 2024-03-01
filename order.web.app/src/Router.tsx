@@ -3,7 +3,7 @@ import AuthPage from "./components/screens/auth/AuthPage.tsx";
 import MainPage from "./components/screens/main/MainPage.tsx";
 import OrderPage from "./components/screens/createOrder/OrderPage.tsx";
 import ProfilePage from "./components/screens/profile/ProfilePage.tsx";
-import OrdersPage from "./components/screens/orders/OrdersPage.tsx";
+import OrdersPage from "./components/screens/checkOrders/OrdersPage.tsx";
 
 export const router = createBrowserRouter([
     {
@@ -24,7 +24,7 @@ export const router = createBrowserRouter([
         element: <ProfilePage/>
     },
     {
-        path: "/orders",
+        path: "/check-orders",
         element: <OrdersPage/>
     },
     {

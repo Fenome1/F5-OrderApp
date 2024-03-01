@@ -28,7 +28,7 @@ const AuthForm = () => {
                     navigate("/duties")
                     break
                 case Roles.Admin:
-                    navigate("/orders")
+                    navigate("/check-orders")
                     break
             }
         }
