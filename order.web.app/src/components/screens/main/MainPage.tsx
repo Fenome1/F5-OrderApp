@@ -46,14 +46,7 @@ const duties = [
         title: 'Поддержка и развитие',
         image: 'src/assets/frend.jpg',
         description: 'Мы всегда готовы помочь вам с любыми техническими проблемами, связанными с вашим сайтом. Регулярно обновляем сайт, добавляя новые функции и улучшая его производительность.'
-    },
-    /*{
-        id: 7,
-        title: 'Безопасность и конфиденциальность',
-        image: 'src/assets/secure.jpg',
-        description: 'Защита данных: Мы гарантируем безопасность ваших данных и конфиденциальность информации пользователей.\n' +
-            'Соблюдаем все требования GDPR и других нормативных актов.'
-    },*/
+    }
 ];
 
 const MainPage: FC = () => {
@@ -64,7 +57,7 @@ const MainPage: FC = () => {
         <DefaultPage>
             <Stack className='duties-stack'>
                 <div className='duties-stack-header'>
-                    <img src='../../../assets/monic.png' alt='img' style={
+                    <img src='../src/assets/monic.png' alt='img' style={
                         {
                             filter: `drop-shadow(0 0 0.1rem ${Colors.Fourthly})`
                         }

@@ -1,9 +1,11 @@
 import {DeletionStatus} from "../../common/DeletionStatus.ts";
 import {useState} from "react";
 import {IPaginationQueryWithFilters} from "../../features/queries/IPaginationQueryWithFilters.ts";
+import {MembersType} from "../../common/MembersType.ts";
 
 interface IUsePaginationQuery {
     filter?: DeletionStatus
+    memberType?: MembersType
     pageSize?: number
     page?: number
 }
@@ -11,6 +13,7 @@ interface IUsePaginationQuery {
 export const usePaginationQuery = (
     {
         filter = DeletionStatus.Available,
+        memberType = MembersType.Client,
         pageSize = 12,
         page = 1
     }: IUsePaginationQuery = {}) => {
@@ -18,6 +21,7 @@ export const usePaginationQuery = (
     const [paginationQuery, setPaginationQuery] = useState(() => ({
         filter,
         pageSize,
+        memberType,
         page
     } as IPaginationQueryWithFilters))
 

@@ -1,7 +1,7 @@
 import {FC} from "react";
 import {Colors} from "../../../common/Colors.ts";
-import {ICreateClientOrderCommand} from "../../../features/commands/user/ICreateClientOrderCommand.ts";
-import {useCreateUserOrderMutation} from "../../../store/apis/userOrderApi.ts";
+import {ICreateClientOrderCommand} from "../../../features/commands/order/ICreateClientOrderCommand.ts";
+import {useCreateUserOrderMutation} from "../../../store/apis/orderApi.ts";
 import {useForm} from "react-hook-form";
 import {
     Button,

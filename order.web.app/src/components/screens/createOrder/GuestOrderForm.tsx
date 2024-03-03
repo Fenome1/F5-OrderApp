@@ -1,9 +1,8 @@
 import {ICategory} from "../../../features/models/ICategory.ts";
 import {FC} from "react";
 import {useForm} from "react-hook-form";
-import {useCreateGuestOrderMutation} from "../../../store/apis/guestOrderApi.ts";
-import {ICreateGuestOrderCommand} from "../../../features/commands/ICreateGuestOrderCommand.ts";
-import {Colors} from "../../../common/Colors.ts";
+import {useCreateGuestOrderMutation} from "../../../store/apis/orderApi.ts";
+import {ICreateGuestOrderCommand} from "../../../features/commands/order/ICreateGuestOrderCommand.ts";
 import {
     Button,
     Card,
@@ -15,6 +14,7 @@ import {
     Stack,
     TextField
 } from "@mui/material";
+import {Colors} from "../../../common/Colors.ts";
 
 interface IGuestOrderFormProps {
     categories: ICategory[] | null

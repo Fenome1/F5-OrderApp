@@ -5,8 +5,7 @@ export enum ApiTags {
     Auth = "Auth",
     User = "User",
     Category = "Category",
-    UserOrder = "UserOrder",
-    GuestOrder = "GuestOrder"
+    Order = "Order",
 }
 
 export const baseApi = createApi({

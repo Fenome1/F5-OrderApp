@@ -30,31 +30,30 @@
     text-align: center;
     flex-grow: 1;
 
-    .guest-card {
+    .order-card {
       display: flex;
       flex-direction: column;
       margin: 5px;
-      height: 300px;
-      max-height: 300px;
+      height: 420px;
 
-      .guest-card-content {
+      .order-card-content {
         display: flex;
         flex-grow: 1;
         text-align: justify;
         flex-direction: column;
 
-        .guest-card-title {
+        .order-card-title {
           display: flex;
-
         }
 
-        .guest-card-comment {
+        .order-card-comment {
           display: flex;
-          max-height: 120px;
+          max-height: 150px;
           overflow: auto;
+          margin-bottom: 20px;
         }
 
-        .guest-card-futter {
+        .order-card-futter {
           display: flex;
           justify-content: space-between;
           align-items: end;
@@ -63,13 +62,19 @@
       }
     }
 
-    .guest-pagination-bar {
+    .pagination-bar {
       display: flex;
       justify-content: center;
       margin: 10px 0 10px 0;
     }
 
   }
+
+  .loading-circ {
+    margin: 0 auto;
+
+  }
+
 }
 
 

@@ -11,7 +11,6 @@ public class GetGuestQueryHandler(OrderDbContext context) : IRequestHandler<GetG
     public async Task<Guest> Handle(GetGuestQuery request, CancellationToken cancellationToken)
     {
         var guest = await context.Guests
-            .Include(g => g.GuestOrders)
             .FirstOrDefaultAsync(g => g.GuestId == request.GuestId,
                 cancellationToken);
 
