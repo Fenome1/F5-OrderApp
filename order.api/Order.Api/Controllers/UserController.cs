@@ -40,7 +40,7 @@ public class UserController : BaseController
     }
 
     [HttpGet]
-    [Authorize(Roles="Admin")]
+    [Authorize(Roles = "Admin")]
     [Route("{userId}")]
     public async Task<ActionResult<UserViewModel>> Get(int userId)
     {

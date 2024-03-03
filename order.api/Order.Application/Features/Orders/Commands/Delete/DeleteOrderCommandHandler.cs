@@ -10,8 +10,8 @@ public class DeleteOrderCommandHandler(OrderDbContext context) : IRequestHandler
     public async Task<Unit> Handle(DeleteOrderCommand request, CancellationToken cancellationToken)
     {
         var order = await context.Orders
-            .FirstOrDefaultAsync(o => o.OrderId == request.OrderId, 
-                cancellationToken: cancellationToken);
+            .FirstOrDefaultAsync(o => o.OrderId == request.OrderId,
+                cancellationToken);
 
         if (order is null)
             throw new NotFoundException(nameof(order));
@@ -19,7 +19,7 @@ public class DeleteOrderCommandHandler(OrderDbContext context) : IRequestHandler
         order.IsDeleted = true;
 
         await context.SaveChangesAsync(cancellationToken);
-        
+
         return Unit.Value;
     }
 }

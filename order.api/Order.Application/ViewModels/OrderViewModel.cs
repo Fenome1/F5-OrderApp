@@ -1,5 +1,4 @@
 ﻿using Order.Application.Common.Mappings;
-using Order.Core.Models;
 
 namespace Order.Application.ViewModels;
 

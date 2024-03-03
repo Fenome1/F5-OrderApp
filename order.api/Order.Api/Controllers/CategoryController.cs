@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Order.Api.Controllers.Base;
 using Order.Application.Features.Categories.Queries.List;
 using Order.Application.ViewModels;
-using Order.Core.Models;
 
 namespace Order.Api.Controllers;
 

@@ -14,7 +14,7 @@ public class ListCategoriesQueryHandler(OrderDbContext context, IMapper mapper)
     {
         var categories = await context.Categories
             .AsNoTrackingWithIdentityResolution()
-            .ToListAsync(cancellationToken: cancellationToken);
+            .ToListAsync(cancellationToken);
 
         if (categories is null || !categories.Any())
             throw new NotFoundException(nameof(categories));

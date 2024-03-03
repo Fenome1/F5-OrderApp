@@ -7,7 +7,8 @@ using Order.Persistence.Context;
 
 namespace Order.Application.Features.Orders.Commands.Create.ByUser;
 
-public class CreateOrderByUserCommandHandler(OrderDbContext context, IMapper mapper) : IRequestHandler<CreateOrderByUserCommand, int>
+public class CreateOrderByUserCommandHandler(OrderDbContext context, IMapper mapper)
+    : IRequestHandler<CreateOrderByUserCommand, int>
 {
     public async Task<int> Handle(CreateOrderByUserCommand request, CancellationToken cancellationToken)
     {
