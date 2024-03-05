@@ -20,10 +20,12 @@ export const orderApi = baseApi.injectEndpoints({
                 await queryFulfilled
                 try {
                     await queryFulfilled
+                    message.success("Заявка успешно отправлена. Скоро с вами свяжется наш менеджер!", 10)
                 } catch (error) {
-                    console.log(error)
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                    // @ts-expect-error
+                    message.error(`Ошибка создания заявки ${error.error?.data}`, 5)
                 }
-                message.success("Заявка успешно отправлена. Скоро с вами свяжется наш менеджер!", 10)
             },
             invalidatesTags: [{type: ApiTags.Order}],
         }),
@@ -37,10 +39,12 @@ export const orderApi = baseApi.injectEndpoints({
                 await queryFulfilled
                 try {
                     await queryFulfilled
+                    message.success("Заявка успешно отправлена. Скоро с вами свяжется наш менеджер!", 10)
                 } catch (error) {
-                    console.log(error)
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                    // @ts-expect-error
+                    message.error(`Ошибка создания заявки ${error.error?.data}`, 5)
                 }
-                message.success("Заявка успешно отправлена. Скоро с вами свяжется наш менеджер!", 10)
             },
             invalidatesTags: [{type: ApiTags.Order}],
         }),

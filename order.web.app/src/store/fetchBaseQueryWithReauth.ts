@@ -4,7 +4,6 @@ import {Mutex} from "async-mutex";
 import {BaseQueryFn, FetchArgs, fetchBaseQuery, FetchBaseQueryError} from "@reduxjs/toolkit/query";
 import {IRefreshCommand} from "../features/commands/auth/IRefreshCommand.ts";
 import {authApi} from "./apis/authApi";
-import {message} from "antd";
 
 export const baseQuery = fetchBaseQuery({
     baseUrl: BASE_URL,
@@ -22,7 +21,7 @@ export const baseQuery = fetchBaseQuery({
     }
 })
 
-async function showError(error: FetchBaseQueryError | undefined) {
+/*async function showError(error: FetchBaseQueryError | undefined) {
     if (!error) {
         return;
     }
@@ -36,7 +35,7 @@ async function showError(error: FetchBaseQueryError | undefined) {
     }
 
     message.error(msg, 3);
-}
+}*/
 
 const mutex = new Mutex()
 
@@ -64,7 +63,7 @@ export const fetchQueryWithReauth: BaseQueryFn<
 
                 result = await baseQuery(args, api, extraOptions)
             } finally {
-                await showError(result.error)
+                /* await showError(result.error)*/
                 await release()
             }
         } else {
@@ -72,6 +71,6 @@ export const fetchQueryWithReauth: BaseQueryFn<
             result = await baseQuery(args, api, extraOptions)
         }
     }
-    await showError(result.error)
+    /* await showError(result.error)*/
     return result
 }

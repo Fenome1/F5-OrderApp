@@ -18,10 +18,13 @@ export const userApi = baseApi.injectEndpoints({
                 try {
                     await queryFulfilled
                     dispatch(updateUser(data))
+                    message.success("Профиль успешно обновлен", 2)
                 } catch (error) {
-                    console.log(error)
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                    // @ts-expect-error
+                    const errorMessage = error.error?.data || "Произошла ошибка";
+                    message.error(errorMessage, 3);
                 }
-                message.success("Профиль успешно обновлен", 2)
             },
             invalidatesTags: [{type: ApiTags.User}],
         }),

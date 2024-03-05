@@ -8,6 +8,7 @@ import {IRefreshCommand} from "../../features/commands/auth/IRefreshCommand.ts";
 import {RootState} from "../store.ts";
 import {FetchBaseQueryError} from "@reduxjs/toolkit/query/react";
 import {baseQuery} from "../fetchBaseQueryWithReauth.ts";
+import {message} from "antd";
 
 export const authApi = baseApi.injectEndpoints({
     endpoints: builder => ({
@@ -19,11 +20,20 @@ export const authApi = baseApi.injectEndpoints({
             }),
             async onQueryStarted(_, {dispatch, queryFulfilled}) {
                 try {
-                    const {data} = await queryFulfilled
-                    await dispatch(login(data))
+                    const {data} = await queryFulfilled;
+                    await dispatch(login(data));
+
+                    const {user} = data || {};
+                    const welcomeMessage = user?.firstName ? `Добро пожаловать, ${user.firstName}!` : "Добро пожаловать!";
+
+                    message.success(welcomeMessage, 3);
+
                 } catch (error) {
-                    dispatch(logout())
-                    console.log(error)
+                    dispatch(logout());
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                    // @ts-expect-error
+                    const errorMessage = error.error?.data || "Произошла ошибка";
+                    message.error(errorMessage, 3);
                 }
             }
         }),

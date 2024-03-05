@@ -78,11 +78,8 @@ const Nav = () => {
                         }
                     </Box>
                 }
-
-                {location.pathname === '/duties' &&
-                    <AuthHandler sx={{flexGrow: 0}} user={user} accessToken={accessToken!}
-                                 refreshToken={refreshToken!}/>
-                }
+                <AuthHandler sx={{flexGrow: 0}} user={user} accessToken={accessToken!}
+                             refreshToken={refreshToken!}/>
             </Toolbar>
         </AppBar>
     );

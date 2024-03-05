@@ -20,6 +20,7 @@ const AuthHandler: FC<ILoginCheckerProps> = (props) => {
     const navigate = useNavigate()
     const toAuth = () => navigate("/auth")
     const toProfile = () => navigate("/profile")
+    const toDuties = () => navigate('/duties')
 
     const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
@@ -31,6 +32,7 @@ const AuthHandler: FC<ILoginCheckerProps> = (props) => {
             refreshToken: props.refreshToken
         })
         handleClose()
+        toDuties()
     }
 
     const handleClose = () => {
