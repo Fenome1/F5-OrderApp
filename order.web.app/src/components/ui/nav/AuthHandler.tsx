@@ -3,7 +3,7 @@ import {Box, Button, CircularProgress, IconButton, Menu, MenuItem} from "@mui/ma
 import {Colors} from "../../../common/Colors.ts";
 import {AccountCircle} from "@mui/icons-material";
 import {useLogoutMutation} from "../../../store/apis/authApi.ts";
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import {IUser} from "../../../features/models/IUser.ts";
 
 interface ILoginCheckerProps {
@@ -17,10 +17,12 @@ const AuthHandler: FC<ILoginCheckerProps> = (props) => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const [logout, {isLoading}] = useLogoutMutation();
 
+    const location = useLocation()
     const navigate = useNavigate()
     const toAuth = () => navigate("/auth")
     const toProfile = () => navigate("/profile")
     const toDuties = () => navigate('/duties')
+    const toReg = () => navigate('/reg')
 
     const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
@@ -74,7 +76,14 @@ const AuthHandler: FC<ILoginCheckerProps> = (props) => {
                     </Menu>
                 </div>
                 :
-                <Button variant='outlined' color="inherit" onClick={toAuth}>Войти</Button>
+                <>
+                    {(location.pathname !== '/auth' && location.pathname !== '/reg') &&
+                        <>
+                            <Button variant='outlined' color="inherit" onClick={toAuth}
+                                    style={{marginRight: "10px"}}>Войти</Button>
+                            <Button variant='outlined' color="inherit" onClick={toReg}>Регистрация</Button>
+                        </>}
+                </>
             }
         </Box>
     );

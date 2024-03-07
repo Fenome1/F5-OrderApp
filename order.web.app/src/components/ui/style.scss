@@ -4,9 +4,9 @@
   min-height: 100vh;
 
   .main-header {
-    height: 103px;
     display: flex;
     justify-content: center;
+    height: 103px;
     flex-shrink: 0;
   }
 
@@ -25,7 +25,13 @@
     align-items: center;
     flex-grow: 0;
   }
+}
 
+.loading-circ {
+  align-content: center;
+  align-items: center;
+  align-self: center;
+  flex-grow: 1;
 }
 
 

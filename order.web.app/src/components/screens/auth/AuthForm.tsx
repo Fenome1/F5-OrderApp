@@ -9,6 +9,9 @@ import {useNavigate} from "react-router-dom";
 import {Roles} from "../../../common/Roles.ts";
 
 const AuthForm = () => {
+    const navigate = useNavigate()
+
+    const toReg = () => navigate('/reg')
 
     const {register, resetField, handleSubmit} = useForm<IAuthCommand>({
         defaultValues: {
@@ -18,7 +21,6 @@ const AuthForm = () => {
     })
 
     const [login, {isLoading}] = useLoginMutation();
-    const navigate = useNavigate()
 
     const onSubmit = async (data: IAuthCommand) => {
         const result = await login(data)
@@ -95,8 +97,20 @@ const AuthForm = () => {
                 <Button type="submit"
                         disabled={isLoading}
                         variant="contained"
-                        style={{borderRadius: '7px', background: Colors.Secondary, color: Colors.Primary}}>
+                        style={{
+                            borderRadius: '7px',
+                            background: Colors.Secondary,
+                            color: Colors.Primary,
+                            marginBottom: '10px'
+                        }}>
                     Войти
+                </Button>
+                <Button
+                    variant="text"
+                    style={{color: Colors.Fourthly}}
+                    onClick={toReg}
+                >
+                    Зарегистрироваться
                 </Button>
             </Stack>
         </form>

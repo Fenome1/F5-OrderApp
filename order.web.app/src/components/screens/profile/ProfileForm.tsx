@@ -1,4 +1,4 @@
-import {Button, CircularProgress, Stack, TextField} from "@mui/material";
+import {Button, Stack, TextField} from "@mui/material";
 import {Person} from "@mui/icons-material";
 import {Colors} from "../../../common/Colors.ts";
 import './style.scss'
@@ -6,6 +6,7 @@ import {useUpdateUserMutation} from "../../../store/apis/userApi.ts";
 import {useTypedSelector} from "../../../store/hooks/hooks.ts";
 import {useForm} from "react-hook-form";
 import {IUserUpdateCommand} from "../../../features/commands/user/IUserUpdateCommand.ts";
+import LoadingCirc from "../../ui/LoadingCirc.tsx";
 
 
 const ProfileForm = () => {
@@ -28,7 +29,7 @@ const ProfileForm = () => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            {isLoading ? <CircularProgress/>
+            {isLoading ? <LoadingCirc/>
                 :
                 <Stack>
                     <span className='person-header-label'>

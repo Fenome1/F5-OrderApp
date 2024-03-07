@@ -1,10 +1,11 @@
 import {usePaginationQuery} from "../../../store/hooks/usePaginationQuery.ts";
 import {ChangeEvent, FC, useEffect, useState} from 'react';
-import {CircularProgress, Grid, Pagination} from "@mui/material";
+import {Grid, Pagination} from "@mui/material";
 import OrderCard from "./OrderCard.tsx";
 import {MembersType} from "../../../common/MembersType.ts";
 import {useDeleteOrderMutation, useGetOrdersQuery} from "../../../store/apis/orderApi.ts";
 import {message} from "antd";
+import LoadingCirc from "../../ui/LoadingCirc.tsx";
 
 interface OrdersContainerProps {
     memberType: MembersType
@@ -42,9 +43,7 @@ const OrdersContainer: FC<OrdersContainerProps> = ({memberType}) => {
 
     return (
         <>
-            {isLoading ? (
-                <CircularProgress/>
-            ) : (
+            {isLoading ? <LoadingCirc/> :
                 <>
                     {data?.items?.length === 0 || isError ? (
                         <h1 className='not-found-header'>Заказы не найдены...</h1>
@@ -57,7 +56,7 @@ const OrdersContainer: FC<OrdersContainerProps> = ({memberType}) => {
                             ))}
                         </Grid>
                     )}
-                    {data?.totalPages > 1 && (
+                    {data?.totalPages && data.totalPages > 1 && (
                         <Pagination
                             className="pagination-bar"
                             count={data?.totalPages}
@@ -68,9 +67,8 @@ const OrdersContainer: FC<OrdersContainerProps> = ({memberType}) => {
                         />
                     )}
                 </>
-            )}
-        </>
-    );
+            }
+        </>)
 };
 
 export default OrdersContainer;

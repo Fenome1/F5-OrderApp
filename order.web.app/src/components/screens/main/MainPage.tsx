@@ -5,6 +5,8 @@ import './style.scss';
 import {useNavigate} from "react-router-dom";
 import DefaultPage from "../../ui/DefaultPage.tsx";
 import {FC} from "react";
+import {useTypedSelector} from "../../../store/hooks/hooks.ts";
+import {Roles} from "../../../common/Roles.ts";
 
 const duties = [
     {
@@ -53,6 +55,8 @@ const MainPage: FC = () => {
     const navigate = useNavigate()
     const toOrder = () => navigate("/create-order")
 
+    const {user} = useTypedSelector(state => state.auth)
+
     return (
         <DefaultPage>
             <Stack className='duties-stack'>
@@ -65,24 +69,26 @@ const MainPage: FC = () => {
                     <div className='main-duty'>
                         <div>
                             <p>Создание сайтов</p>
-                            <Button className='main-buttons' variant="outlined"
-                                    onClick={toOrder}
-                                    size={"large"}
-                                    sx={{
-                                        color: Colors.Primary,
-                                        borderColor: 'transparent',
-                                        background: Colors.Secondary,
-                                        transition: "all 0.2s .01s",
-                                        fontSize: '17px',
-                                        "&:hover": {
-                                            color: Colors.Fourthly,
-                                            backgroundColor: Colors.Primary,
-                                            borderColor: Colors.Secondary,
-                                            fontSize: '20px'
-                                        }
-                                    }}>
-                                Заказать сайт
-                            </Button>
+                            {(user?.role.roleId !== Roles.Admin) &&
+                                <Button className='main-buttons' variant="outlined"
+                                        onClick={toOrder}
+                                        size={"large"}
+                                        sx={{
+                                            color: Colors.Primary,
+                                            borderColor: 'transparent',
+                                            background: Colors.Secondary,
+                                            transition: "all 0.2s .01s",
+                                            fontSize: '17px',
+                                            "&:hover": {
+                                                color: Colors.Fourthly,
+                                                backgroundColor: Colors.Primary,
+                                                borderColor: Colors.Secondary,
+                                                fontSize: '20px'
+                                            }
+                                        }}>
+                                    Заказать сайт
+                                </Button>
+                            }
                             <Button className='main-buttons' variant="outlined" href="https://f5-studio.ru/portfolio/"
                                     size={"large"}
                                     sx={{

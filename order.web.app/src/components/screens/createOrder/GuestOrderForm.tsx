@@ -3,18 +3,9 @@ import {FC} from "react";
 import {useForm} from "react-hook-form";
 import {useCreateGuestOrderMutation} from "../../../store/apis/orderApi.ts";
 import {ICreateGuestOrderCommand} from "../../../features/commands/order/ICreateGuestOrderCommand.ts";
-import {
-    Button,
-    Card,
-    CircularProgress,
-    FormControl,
-    InputLabel,
-    MenuItem,
-    Select,
-    Stack,
-    TextField
-} from "@mui/material";
+import {Button, Card, FormControl, InputLabel, MenuItem, Select, Stack, TextField} from "@mui/material";
 import {Colors} from "../../../common/Colors.ts";
+import LoadingCirc from "../../ui/LoadingCirc.tsx";
 
 interface IGuestOrderFormProps {
     categories: ICategory[] | null
@@ -34,9 +25,9 @@ const GuestOrderForm: FC<IGuestOrderFormProps> = (props) => {
             <Card className='create-order-card' raised sx={{
                 filter: `drop-shadow(5 10 0.05rem ${Colors.Fourthly})`
             }}>
-                {isLoading ? <CircularProgress sx={{color: `${Colors.Secondary}`}}/> :
+                {isLoading ? <LoadingCirc/> :
                     <div className='create-order-content'>
-                        <div className='create-order-form-header'>
+                        <div className='create-order-form-header' style={{marginBottom: '25px'}}>
                             <p children='Заказать сайт' style={{fontSize: '21pt', color: Colors.Fourthly}}/>
                             <p> Заполните форму заказа сайта и мы обязательно с вами свяжемся</p>
                         </div>

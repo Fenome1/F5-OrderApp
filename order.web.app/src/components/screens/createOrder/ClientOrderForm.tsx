@@ -3,19 +3,10 @@ import {Colors} from "../../../common/Colors.ts";
 import {ICreateClientOrderCommand} from "../../../features/commands/order/ICreateClientOrderCommand.ts";
 import {useCreateUserOrderMutation} from "../../../store/apis/orderApi.ts";
 import {useForm} from "react-hook-form";
-import {
-    Button,
-    Card,
-    CircularProgress,
-    FormControl,
-    InputLabel,
-    MenuItem,
-    Select,
-    Stack,
-    TextField
-} from "@mui/material";
+import {Button, Card, FormControl, InputLabel, MenuItem, Select, Stack, TextField} from "@mui/material";
 import {IUser} from "../../../features/models/IUser.ts";
 import {ICategory} from "../../../features/models/ICategory.ts";
+import LoadingCirc from "../../ui/LoadingCirc.tsx";
 
 interface ClientOrderFormProps {
     user: IUser
@@ -39,9 +30,9 @@ const ClientOrderForm: FC<ClientOrderFormProps> = (props) => {
             <Card className='create-order-card' raised sx={{
                 filter: `drop-shadow(5 10 0.05rem ${Colors.Fourthly})`
             }}>
-                {isLoading ? <CircularProgress sx={{color: `${Colors.Secondary}`}}/> :
+                {isLoading ? <LoadingCirc/> :
                     <div className='create-order-content'>
-                        <div className='create-order-form-header'>
+                        <div className='create-order-form-header' style={{marginBottom: '25px'}}>
                             <p children='Заказать сайт' style={{fontSize: '21pt', color: Colors.Fourthly}}/>
                             <p> Заполните форму заказа сайта и мы обязательно с вами свяжемся</p>
                         </div>

@@ -6,11 +6,11 @@ import {PersistGate} from "redux-persist/integration/react";
 
 const App = () => {
     return (
-        <PersistGate loading={null} persistor={persistor}>
-            <Provider store={store}>
+        <Provider store={store}>
+            <PersistGate loading={null} persistor={persistor}>
                 <RouterProvider router={router}/>
-            </Provider>
-        </PersistGate>
+            </PersistGate>
+        </Provider>
     );
 };
 
