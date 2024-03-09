@@ -69,7 +69,7 @@ const MainPage: FC = () => {
                     <div className='main-duty'>
                         <div>
                             <p>Создание сайтов</p>
-                            {(user?.role.roleId !== Roles.Admin) &&
+                            {(user?.role?.roleId !== Roles.Admin) &&
                                 <Button className='main-buttons' variant="outlined"
                                         onClick={toOrder}
                                         size={"large"}
@@ -79,6 +79,7 @@ const MainPage: FC = () => {
                                             background: Colors.Secondary,
                                             transition: "all 0.2s .01s",
                                             fontSize: '17px',
+                                            marginRight: '10px',
                                             "&:hover": {
                                                 color: Colors.Fourthly,
                                                 backgroundColor: Colors.Primary,

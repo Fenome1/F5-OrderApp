@@ -9,11 +9,11 @@ import RequireAuth from "./hok/RequireAuth.tsx";
 
 export const router = createBrowserRouter(
     createRoutesFromElements([
-        <Route path='/'>
+        <Route>
             <Route path='auth' element={<AuthPage/>}/>
             <Route path='reg' element={<RegPage/>}/>
 
-            <Route path='duties' element={<MainPage/>}/>
+            <Route index path='duties' element={<MainPage/>}/>
             <Route path='create-order' element={<OrderPage/>}/>
 
             <Route path='profile' element={

@@ -25,7 +25,6 @@ public class UserController : BaseController
     }
 
     [HttpPut("Update", Name = "Update")]
-    [Authorize(Roles = "Client")]
     [Authorize]
     public async Task<ActionResult<UserViewModel>> Update([FromBody] UpdateUserCommand command)
     {

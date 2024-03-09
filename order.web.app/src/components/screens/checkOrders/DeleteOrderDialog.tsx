@@ -18,11 +18,11 @@ const DeleteOrderDialog: FC<DeleteOrderDialogProps> = ({open, handleClose, onDel
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button color="primary" onClick={handleClose}>
-                        Нет
-                    </Button>
                     <Button color="primary" autoFocus onClick={onDelete}>
                         Да
+                    </Button>
+                    <Button color="primary" onClick={handleClose}>
+                        Нет
                     </Button>
                 </DialogActions>
             </Dialog>

@@ -9,9 +9,11 @@ import LoadingCirc from "../../ui/LoadingCirc.tsx";
 
 interface OrdersContainerProps {
     memberType: MembersType
+    categoryId?: number
+    search?: string
 }
 
-const OrdersContainer: FC<OrdersContainerProps> = ({memberType}) => {
+const OrdersContainer: FC<OrdersContainerProps> = ({memberType, categoryId, search}) => {
     const toFirstPage = 1;
     const [page, setPage] = useState(1);
     const [paginationQuery, setPaginationQuery] = usePaginationQuery();
@@ -20,9 +22,9 @@ const OrdersContainer: FC<OrdersContainerProps> = ({memberType}) => {
     const [deleteOrder] = useDeleteOrderMutation()
 
     useEffect(() => {
+        setPaginationQuery({...paginationQuery, page: toFirstPage, memberType, search, categoryId});
         setPage(toFirstPage)
-        setPaginationQuery({...paginationQuery, memberType, page: toFirstPage});
-    }, [memberType, setPaginationQuery]);
+    }, [memberType, setPaginationQuery, categoryId, search]);
 
     const handleChangePage = (event: ChangeEvent<unknown>, newPage: number) => {
         window.scrollTo({top: 0, behavior: 'smooth'});
@@ -46,7 +48,7 @@ const OrdersContainer: FC<OrdersContainerProps> = ({memberType}) => {
             {isLoading ? <LoadingCirc/> :
                 <>
                     {data?.items?.length === 0 || isError ? (
-                        <h1 className='not-found-header'>Заказы не найдены...</h1>
+                        <p className='not-found-header'>Заказы не найдены</p>
                     ) : (
                         <Grid container spacing={1}>
                             {data?.items.map(item => (

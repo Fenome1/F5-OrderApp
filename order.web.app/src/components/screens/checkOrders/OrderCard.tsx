@@ -65,7 +65,8 @@ const OrderCard: FC<OrderCardProps> = ({item, onDelete}) => {
                             padding: '10px',
                             background: `${Colors.Primary}`,
                             border: `${Colors.Thirdly} 2px solid`,
-                            borderRadius: '11px'
+                            borderRadius: '11px',
+                            marginRight: '10px'
                         }}>
                             <Typography sx={{marginBottom: '5px', fontSize: '12px'}} variant="body2">
                                 <i>{isClientOrder ? 'Контакты' : 'Почта для связи'}</i>
@@ -81,7 +82,7 @@ const OrderCard: FC<OrderCardProps> = ({item, onDelete}) => {
                                 <a href={`mailto:${guestEmail}`}>{guestEmail}</a>
                             )}
                         </Box>
-                        <Box>
+                        <Box sx={{marginRight: '10px'}}>
                             <Typography sx={{marginBottom: '5px', fontSize: '12px'}} variant="body2">
                                 <i>Дата создания заявки</i>
                             </Typography>

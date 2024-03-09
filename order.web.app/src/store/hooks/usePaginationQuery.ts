@@ -8,6 +8,8 @@ interface IUsePaginationQuery {
     memberType?: MembersType
     pageSize?: number
     page?: number
+    categoryId?: number
+    search?: string
 }
 
 export const usePaginationQuery = (
@@ -15,14 +17,18 @@ export const usePaginationQuery = (
         filter = DeletionStatus.Available,
         memberType = MembersType.Client,
         pageSize = 12,
-        page = 1
+        page = 1,
+        categoryId,
+        search,
     }: IUsePaginationQuery = {}) => {
 
     const [paginationQuery, setPaginationQuery] = useState(() => ({
         filter,
         pageSize,
         memberType,
-        page
+        page,
+        categoryId,
+        search
     } as IPaginationQueryWithFilters))
 
     return [paginationQuery, setPaginationQuery] as const;
