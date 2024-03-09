@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Order.Api.Controllers.Base;
 using Order.Application.Features.Orders.Commands.Create.ByGuest;
@@ -12,6 +13,7 @@ namespace Order.Api.Controllers;
 
 public class OrderController : BaseController
 {
+    [Authorize]
     [HttpPost("User/Create", Name = "UserOrderCreate")]
     public async Task<ActionResult<int>> UserOrderCreate([FromBody] CreateOrderByUserCommand command)
     {
@@ -25,6 +27,7 @@ public class OrderController : BaseController
         }
     }
 
+    [AllowAnonymous]
     [HttpPost("Guest/Create", Name = "GuestOrderCreate")]
     public async Task<ActionResult<int>> GuestOrderCreate([FromBody] CreateOrderByGuestCommand command)
     {
@@ -39,6 +42,7 @@ public class OrderController : BaseController
     }
 
     [HttpGet]
+    [Authorize(Roles = "Admin")]
     [Route(nameof(Get))]
     public async Task<ActionResult<PagedList<OrderViewModel>>> Get([FromQuery] ListOrdersQuery query)
     {
@@ -52,6 +56,7 @@ public class OrderController : BaseController
         }
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpDelete("Delete/{orderId:int}")]
     public async Task<ActionResult<Unit>> Delete(int orderId)
     {

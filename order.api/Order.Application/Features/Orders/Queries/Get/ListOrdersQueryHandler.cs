@@ -35,13 +35,10 @@ public class ListOrdersQueryHandler(OrderDbContext context, IMapper mapper)
         };
 
         if (request.CategoryId is not null)
-        {
             query = query
                 .Where(o => o.Category.CategoryId == request.CategoryId);
-        }
 
         if (request.Search is not null)
-        {
             query = query.Where(o =>
                 (request.MemberType == MemberType.Client &&
                  (o.User.Email.StartsWith(request.Search) ||
@@ -50,7 +47,6 @@ public class ListOrdersQueryHandler(OrderDbContext context, IMapper mapper)
                   (o.User.MiddleName != null && o.User.MiddleName.StartsWith(request.Search)))) ||
                 (request.MemberType == MemberType.Guest && o.Guest.Email.StartsWith(request.Search)) ||
                 o.Comment.Contains(request.Search));
-        }
 
         var paginatedOrders = await query
             .Skip((request.Page - 1) * request.PageSize)
