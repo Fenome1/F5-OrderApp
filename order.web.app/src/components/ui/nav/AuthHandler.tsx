@@ -1,10 +1,11 @@
 import React, {FC, useState} from 'react';
-import {Box, Button, CircularProgress, IconButton, Menu, MenuItem} from "@mui/material";
+import {Box, Button, IconButton, Menu, MenuItem} from "@mui/material";
 import {Colors} from "../../../common/Colors.ts";
 import {AccountCircle} from "@mui/icons-material";
 import {useLogoutMutation} from "../../../store/apis/authApi.ts";
 import {useLocation, useNavigate} from "react-router-dom";
 import {IUser} from "../../../features/models/IUser.ts";
+import LoadingCirc from "../LoadingCirc.tsx";
 
 interface ILoginCheckerProps {
     user: IUser | null,
@@ -42,48 +43,50 @@ const AuthHandler: FC<ILoginCheckerProps> = (props) => {
     };
 
     return (
-        <Box sx={props.sx}>
-            {isLoading && <CircularProgress/>}
-            {!isLoading &&
-            props.user ?
-                <div>
-                    <IconButton
-                        size='large'
-                        onClick={handleMenu}
-                        sx={
-                            {
-                                color: Colors.Primary
-                            }
-                        }>
-                        <AccountCircle/>
-                    </IconButton>
-                    <Menu
-                        id="menu-appbar"
-                        anchorEl={anchorEl}
-                        anchorOrigin={{
-                            vertical: 'top',
-                            horizontal: 'right',
-                        }}
-                        keepMounted
-                        transformOrigin={{
-                            vertical: 'top',
-                            horizontal: 'right',
-                        }}
-                        open={Boolean(anchorEl)}
-                        onClose={handleClose}>
-                        <MenuItem onClick={toProfile}>Профиль</MenuItem>
-                        <MenuItem onClick={getLogout}>Выход</MenuItem>
-                    </Menu>
-                </div>
-                :
-                <>
-                    {(location.pathname !== '/auth' && location.pathname !== '/reg') &&
-                        <>
-                            <Button variant='outlined' color="inherit" onClick={toAuth}
-                                    style={{marginRight: "10px"}}>Войти</Button>
-                            <Button variant='outlined' color="inherit" onClick={toReg}>Регистрация</Button>
-                        </>}
-                </>
+        <Box sx={{...props.sx, display: 'flex'}}>
+            {isLoading ? <LoadingCirc color={Colors.Primary}/> : <>
+                {!isLoading &&
+                props.user ?
+                    <div>
+                        <IconButton
+                            size='large'
+                            onClick={handleMenu}
+                            sx={
+                                {
+                                    color: Colors.Primary
+                                }
+                            }>
+                            <AccountCircle/>
+                        </IconButton>
+                        <Menu
+                            id="menu-appbar"
+                            anchorEl={anchorEl}
+                            anchorOrigin={{
+                                vertical: 'top',
+                                horizontal: 'right',
+                            }}
+                            keepMounted
+                            transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'right',
+                            }}
+                            open={Boolean(anchorEl)}
+                            onClose={handleClose}>
+                            <MenuItem onClick={toProfile}>Профиль</MenuItem>
+                            <MenuItem onClick={getLogout}>Выход</MenuItem>
+                        </Menu>
+                    </div>
+                    :
+                    <>
+                        {(location.pathname !== '/auth' && location.pathname !== '/reg') &&
+                            <>
+                                <Button variant='outlined' color="inherit" onClick={toAuth}
+                                        style={{marginRight: "10px"}}>Войти</Button>
+                                <Button variant='outlined' color="inherit" onClick={toReg}>Регистрация</Button>
+                            </>}
+                    </>
+                }
+            </>
             }
         </Box>
     );
