@@ -11,12 +11,12 @@ public class RoleEntityTypeConfiguration : IEntityTypeConfiguration<Role>
         builder.Property(e => e.RoleId).ValueGeneratedNever();
         builder.Property(e => e.Title).HasMaxLength(50);
         builder.HasData([
-            new()
+            new Role
             {
                 RoleId = 1,
                 Title = "Client"
             },
-            new()
+            new Role
             {
                 RoleId = 2,
                 Title = "Admin"

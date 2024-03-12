@@ -22,7 +22,8 @@ public class UserEntityTypeConfiguration : IEntityTypeConfiguration<User>
             .HasConstraintName("FK_User_Role");
 
         builder.HasData([
-            new() {
+            new User
+            {
                 UserId = 1,
                 Email = "admin@f5.ru",
                 FirstName = "Админ",

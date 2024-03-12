@@ -8,7 +8,7 @@ public class OrderEntityTypeConfiguration : IEntityTypeConfiguration<Core.Models
     public void Configure(EntityTypeBuilder<Core.Models.Order> builder)
     {
         builder.HasKey(e => e.OrderId).HasName("PK_ClientOrder");
-        
+
         builder.Property(e => e.CreationDate).HasDefaultValueSql("(getdate())");
 
         builder.HasOne(d => d.Category).WithMany(p => p.Orders)

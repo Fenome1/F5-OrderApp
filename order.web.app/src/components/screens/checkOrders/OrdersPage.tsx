@@ -66,6 +66,7 @@ const OrdersPage = () => {
                                 options={categories || []}
                                 getOptionLabel={(option) => option.title}
                                 onChange={(event: any, newValue: ICategory | null) => {
+                                    console.log("Event:", event);
                                     setCategory(newValue)
                                 }}
                                 renderInput={(params) => <TextField {...params} label="Категория"/>}/>
