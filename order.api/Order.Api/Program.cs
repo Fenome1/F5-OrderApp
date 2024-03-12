@@ -3,6 +3,7 @@ using Autofac.Extensions.DependencyInjection;
 using Order.Api.Module;
 using Order.Application.Modules;
 using Order.Application.Services.TokenService;
+using Order.Persistence.Context;
 
 var applicationBuilder = WebApplication.CreateBuilder(args);
 
@@ -49,8 +50,8 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-/*await using var scope = app.Services.CreateAsyncScope();
+await using var scope = app.Services.CreateAsyncScope();
 await using var context = scope.ServiceProvider.GetRequiredService<OrderDbContext>();
-await context.Database.EnsureCreatedAsync();*/
+await context.Database.EnsureCreatedAsync();
 
 app.Run();
