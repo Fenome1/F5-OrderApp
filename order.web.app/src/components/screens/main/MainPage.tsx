@@ -12,41 +12,41 @@ const duties = [
     {
         id: 1,
         title: 'Концепция сайта',
-        image: "public/Images/conteption.jpg",
+        image: "images/conteption.jpg",
         description:
             'Чтобы создать качественный продукт, мы определяем цели проекта и разрабатываем стратегию их достижения. На этом этапе мы выстраиваем эффективную коммуникацию с целевой аудиторией.',
     },
     {
         id: 2,
         title: 'Дизайн сайта',
-        image: "public/Images/design.jpg",
+        image: "images/design.jpg",
         description:
             'Вдохновляясь лучшими мировыми примерами, мы разрабатываем уникальный визуальный стиль для компании. Учитываем потребности аудитории сайта, заботимся об удобстве использования.',
     },
     {
         id: 3,
         title: 'Разработка сайта',
-        image: "public/Images/code.jpg",
+        image: "images/code.jpg",
         description:
             'HTML-верстка, интеграция с системой управления сайтом, тестирование, первичное наполнение информацией.',
     },
     {
         id: 4,
         title: 'Продвижение',
-        image: "public/Images/chart.jpg",
+        image: "images/chart.jpg",
         description:
             'Ваша целевая аудитория обязательно должна узнать о вашем новом сайте. Мы поможем осуществить грамотное продвижение по многочисленным каналам, чтобы обеспечить привлечение на сайт только целевых клиентов',
     },
     {
         id: 5,
         title: 'Аналитика и маркетинг',
-        image: 'public/Images/analitic.jpg',
+        image: 'images/analitic.jpg',
         description: 'Мы поможем вам понять, кто ваша целевая аудитория, откуда она приходит и как взаимодействует с вашим сайтом. Разработаем эффективные маркетинговые кампании для привлечения новых клиентов и удержания существующих.'
     },
     {
         id: 6,
         title: 'Поддержка и развитие',
-        image: 'public/Images/frend.jpg',
+        image: 'images/frend.jpg',
         description: 'Мы всегда готовы помочь вам с любыми техническими проблемами, связанными с вашим сайтом. Регулярно обновляем сайт, добавляя новые функции и улучшая его производительность.'
     }
 ];
@@ -61,7 +61,7 @@ const MainPage: FC = () => {
         <DefaultPage>
             <Stack className='duties-stack'>
                 <div className='duties-stack-header'>
-                    <img src='../public/Images/monic.png' alt='img' style={
+                    <img src='images/monic.png' alt='img' style={
                         {
                             filter: `drop-shadow(0 0 0.1rem ${Colors.Fourthly})`
                         }
@@ -79,7 +79,7 @@ const MainPage: FC = () => {
                                             background: Colors.Secondary,
                                             transition: "all 0.2s .01s",
                                             fontSize: '17px',
-                                            marginRight: '10px',
+                                            marginLeft: 'auto',
                                             "&:hover": {
                                                 color: Colors.Fourthly,
                                                 backgroundColor: Colors.Primary,
@@ -98,6 +98,7 @@ const MainPage: FC = () => {
                                         borderColor: 'transparent',
                                         transition: "all 0.2s .01s",
                                         fontSize: '17px',
+                                        marginLeft: '20px',
                                         "&:hover": {
                                             color: Colors.Fourthly,
                                             backgroundColor: Colors.Primary,
