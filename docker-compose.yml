@@ -16,8 +16,8 @@ services:
       - sql_data:/var/opt/sqlserver/sql_data
       - sql_log:/var/opt/sqlserver/sql_log
       - sql_backup:/var/opt/sqlserver/sql_backups
-    logging:
-      driver: none
+    #logging:
+      #driver: none
   
   order.api:
     container_name: Order.Api
@@ -36,8 +36,8 @@ services:
     volumes:
       - ~/.aspnet/https:/https:ro
     restart: unless-stopped
-    logging:
-      driver: none
+    #logging:
+      #driver: none
   
   nginx:
     container_name: Order.WebApp
@@ -52,8 +52,8 @@ services:
       - order.api
     stdin_open: true
     restart: unless-stopped
-    logging:
-      driver: none
+    #logging:
+      #driver: none
 
 volumes:
   sql_system:

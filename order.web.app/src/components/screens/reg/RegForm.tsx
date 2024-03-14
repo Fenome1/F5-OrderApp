@@ -1,6 +1,6 @@
 import './style.scss'
-import {Button, Stack, TextField} from "@mui/material";
-import {Person} from "@mui/icons-material";
+import {Button, IconButton, InputAdornment, Stack, TextField} from "@mui/material";
+import {Person, Visibility, VisibilityOff} from "@mui/icons-material";
 import {Colors} from "../../../common/Colors.ts";
 import {useForm} from "react-hook-form";
 import {useNavigate} from "react-router-dom";
@@ -8,6 +8,7 @@ import {useCreateUserMutation} from "../../../store/apis/userApi.ts";
 import {message} from "antd";
 import {IRegCommand} from "../../../features/commands/reg/IRegCommand.ts";
 import {Roles} from "../../../common/Roles.ts";
+import {useState} from "react";
 
 interface IRegData {
     email: string
@@ -16,6 +17,13 @@ interface IRegData {
 }
 
 const RegForm = () => {
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const handleClickShowPassword = () => setShowPassword(!showPassword);
+    const handleMouseDownPassword = () => setShowPassword(!showPassword);
+    const handleClickShowConfirmPassword = () => setShowConfirmPassword(!showConfirmPassword);
+    const handleMouseDownConfirmPassword = () => setShowConfirmPassword(!showConfirmPassword);
+
     const {register, reset, resetField, handleSubmit} = useForm<IRegData>();
     const navigate = useNavigate()
 
@@ -84,20 +92,29 @@ const RegForm = () => {
                     required
                     {...register("password")}
                     label="Пароль"
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     size="small"
                     style={{marginBottom: '30px'}}
                     InputProps={{
                         style: {
                             color: Colors.Fourthly
-                        }
+                        },
+                        endAdornment: (
+                            <InputAdornment position="end">
+                                <IconButton
+                                    aria-label="toggle password visibility"
+                                    onClick={handleClickShowPassword}
+                                    onMouseDown={handleMouseDownPassword}>
+                                    {showPassword ? <Visibility/> : <VisibilityOff/>}
+                                </IconButton>
+                            </InputAdornment>
+                        )
                     }}
                     InputLabelProps={{
                         style: {
                             color: Colors.Fourthly,
                         }
-                    }}
-                />
+                    }}></TextField>
                 <TextField
                     sx={{
                         "& .MuiOutlinedInput-root.Mui-focused": {
@@ -109,13 +126,23 @@ const RegForm = () => {
                     required
                     {...register("confirmPassword")}
                     label="Подтвердите пароль"
-                    type="password"
+                    type={showConfirmPassword ? "text" : "password"}
                     size="small"
                     style={{marginBottom: '30px'}}
                     InputProps={{
                         style: {
                             color: Colors.Fourthly
-                        }
+                        },
+                        endAdornment: (
+                            <InputAdornment position="end">
+                                <IconButton
+                                    aria-label="toggle password visibility"
+                                    onClick={handleClickShowConfirmPassword}
+                                    onMouseDown={handleMouseDownConfirmPassword}>
+                                    {showConfirmPassword ? <Visibility/> : <VisibilityOff/>}
+                                </IconButton>
+                            </InputAdornment>
+                        )
                     }}
                     InputLabelProps={{
                         style: {

@@ -1,14 +1,19 @@
-import {Button, Stack, TextField} from "@mui/material";
+import {Button, IconButton, InputAdornment, Stack, TextField} from "@mui/material";
 import {IAuthCommand} from "../../../features/commands/auth/IAuthCommand.ts";
-import {Person,} from "@mui/icons-material";
+import {Person, Visibility, VisibilityOff,} from "@mui/icons-material";
 import {Colors} from "../../../common/Colors.ts";
 import './style.scss'
 import {useLoginMutation} from "../../../store/apis/authApi.ts";
 import {useForm} from "react-hook-form";
 import {useNavigate} from "react-router-dom";
 import {Roles} from "../../../common/Roles.ts";
+import {useState} from "react";
 
 const AuthForm = () => {
+    const [showPassword, setShowPassword] = useState(false);
+    const handleClickShowPassword = () => setShowPassword(!showPassword);
+    const handleMouseDownPassword = () => setShowPassword(!showPassword);
+
     const navigate = useNavigate()
 
     const toReg = () => navigate('/reg')
@@ -78,15 +83,26 @@ const AuthForm = () => {
                         }
                     }}
                     {...register("password")}
+                    type={showPassword ? "text" : "password"}
                     required={true}
                     label="Пароль"
-                    type="password"
                     size={"small"}
                     style={{marginBottom: '30px'}}
                     InputProps={{
                         style: {
                             color: Colors.Fourthly
-                        }
+                        },
+                        endAdornment: (
+                            <InputAdornment position="end">
+                                <IconButton
+                                    aria-label="toggle password visibility"
+                                    onClick={handleClickShowPassword}
+                                    onMouseDown={handleMouseDownPassword}
+                                >
+                                    {showPassword ? <Visibility/> : <VisibilityOff/>}
+                                </IconButton>
+                            </InputAdornment>
+                        )
                     }}
                     InputLabelProps={{
                         style: {
@@ -94,6 +110,7 @@ const AuthForm = () => {
                         }
                     }}
                 />
+
                 <Button type="submit"
                         disabled={isLoading}
                         variant="contained"
