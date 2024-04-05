@@ -10,26 +10,22 @@ using Order.Application.Services.TokenService;
 
 namespace Order.Application.Modules;
 
-public class ApplicationModule : Module
+public sealed class ApplicationModule : Module
 {
-    private readonly IConfiguration _configuration;
-
-    public ApplicationModule(IConfiguration configuration)
-    {
-        _configuration = configuration;
-    }
-
     protected override void Load(ContainerBuilder builder)
     {
         builder.RegisterType<PasswordHasher>()
             .As<IPasswordHasher>()
             .AsSelf();
-
+        
         builder.RegisterType<TokenService>()
             .As<ITokenService>()
             .AsSelf();
 
-        builder.RegisterAutoMapper(config => { config.AddProfile(new AssemblyMappingProfile(ThisAssembly)); });
+        builder.RegisterAutoMapper(config =>
+        {
+            config.AddProfile(new AssemblyMappingProfile(ThisAssembly));
+        });
 
         builder.RegisterMediatR(MediatRConfigurationBuilder
             .Create(ThisAssembly)

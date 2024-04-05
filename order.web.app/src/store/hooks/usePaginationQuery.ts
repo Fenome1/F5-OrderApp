@@ -16,7 +16,7 @@ export const usePaginationQuery = (
     {
         filter = DeletionStatus.Available,
         memberType = MembersType.Client,
-        pageSize = 12,
+        pageSize = 6,
         page = 1,
         categoryId,
         search,

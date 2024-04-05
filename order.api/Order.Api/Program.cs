@@ -13,7 +13,7 @@ applicationBuilder.Host.UseServiceProviderFactory(new AutofacServiceProviderFact
     {
         var configuration = applicationBuilder.Configuration;
         containerBuilder.RegisterModule(new ApiModule(configuration));
-        containerBuilder.RegisterModule(new ApplicationModule(configuration));
+        containerBuilder.RegisterModule(new ApplicationModule());
     }
 ));
 

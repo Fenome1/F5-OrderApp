@@ -5,7 +5,7 @@ using Order.Persistence.Context;
 
 namespace Order.Application.Features.Guests.Commands.Create;
 
-public class CreateGuestCommandHandler(OrderDbContext context, IMapper mapper)
+public class UpdateUserCommandHandler(OrderDbContext context, IMapper mapper)
     : IRequestHandler<CreateGuestCommand, int>
 {
     public async Task<int> Handle(CreateGuestCommand request, CancellationToken cancellationToken)

@@ -17,7 +17,6 @@ public class CreateOrderByGuestCommandHandler(OrderDbContext context, IMapper ma
 
         var guestOrder = mapper.Map<Core.Models.Order>(request);
 
-
         if (guest is null)
         {
             var guestId = await mediator.Send(
